@@ -57,3 +57,6 @@ git pull origin main
 과제:
 파일을 새로 만들거나 수정하면서 commit을 5번 이상 해보기
 중간중간 git status, git log도 써보기!
+
+
+교수님 꾸르팁
