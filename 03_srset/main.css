@@ -1,0 +1,17 @@
+div {
+  width: 200px;
+  height: 100px;
+  background-color: orange;
+
+}
+
+
+/* Emmet */
+.logo {
+  /* w:200 */
+  width: 200px;
+  /* h:100 */
+  height: 100px;
+  /* bc:orange */
+  background-color: orange;
+}
