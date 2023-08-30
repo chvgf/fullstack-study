@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!-- lang 문서의 언어 ex) en,ko -->
+<html lang="ko">
+<head>
+  <!-- head 테그는 문서의 정보 -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TEST</title>
+  <link rel="stylesheet" href="css/main.css">
+  <script src="js/main.js"></script>
+  <!-- 내부스크립트 -->
+  <script>
+    console.log('내부 스크립트');
+  </script>
+  
+  <!-- 내부 스타일시트 단점 여러 html 에서 같은 스타일이 반복될 경우,
+  해당 스타일 규칠을 html 문서마다 반복 작성해야함 스타일의 변경사항이 있을 경우
+  여러 문서를 다 수정
+-->
+  <style>
+    div {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div>Hello world!</div>
+
+  <!--  heropy.blog 로고 이미지 받기 -->
+  <img src="images/logo.png" alt="로고">
+  <img src="https://heropy.blog/css/images/logo.png" alt="로고">
+  <img src="./images/logo.png" alt="로고">
+  <img src="/02_test/images/logo.png" alt="로고">
+
+  <div class="logo"></div>
+
+  <br>
+
+  <!-- 페이지 나누고 연결하기 -->
+  <a href="https://www.naver.com">NAVER</a>
+
+  <a href="about/about.html">About</a>
+  <a href="./about">home index</a>
+
+  <a href="login/index.html">login</a>
+  
+</body>
+</html>
