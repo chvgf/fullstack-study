@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- (중요)
+    HTML은 구조를 만드는 역할을 하므로,
+    각 태그(요소)가 어떤 역할을 하는지, 어떤 속성을 사용하는 지 정도만 기억해두면 충분
+    눈에 보이는 예쁘게 만드는 작업은 css로~~~
+  -->
+  <style>
+    table {
+      border-collapse: collapse;
+      
+    }
+    th, td {
+      /* 선(테두리): 두께, 종류, 색상 */
+      border: 1px solid black;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <!-- table.: 표, 행(row)과 열(colum)로 구성 -->
+  <!-- 주로 게시판이나 리스트형 목록을 만들때 사용
+    또는 실제 엑셀이나 구글 시트 같은 '표(table)'가 필요한 경우에만 사용하고
+    table로 레이아웃 작업하면 안됨(CSS기능으로 레이아웃 작업을 해야함)
+   -->
+   <table>
+    <!-- table row: 하나의 행 -->
+    <tr>
+      <!-- table data: 하나의 열 -->
+      <td>A</td>
+      <td>B</td>
+    </tr>
+    <tr>
+      <td>C</td>
+      <td>D</td>
+    </tr>
+   </table>
+
+   <hr>
+
+   <!-- 추가 설명 -->
+   <!-- tbody,th -->
+   <table>
+    <!-- table태그 안에 table body 자동으로 들어감 안써도 그만 -->
+    <tr>
+      <!-- table header: 타이틀 -->
+      <th>사람 1</th>
+      <th>사람 2</th>
+      <th>사람 3</th>
+    </tr>
+    <tr>
+      <td>준우</td>
+      <td>지민</td>
+      <td>해창</td>
+    </tr>
+    <tr>
+      <td>20</td>
+      <td>21</td>
+      <td>22</td>
+    </tr>
+   </table>
+
+   <hr>
+
+   <!-- colspan, rowspan: 셀 병합(merge) -->
+   <table>
+    <tr>
+      <td colspan="2">1</td>
+      <!-- <td>2</td> -->
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>5</td>
+      <td rowspan="2">6</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>8</td>
+      <!-- <td>9</td> -->
+    </tr>
+   </table>
+
+   <hr>
+
+   Quiz 셀병합
+   <table>
+    <tr>
+      <td>1</td>
+      <td colspan="2">2</td>
+      <!-- <td>3</td> -->
+      <td>4</td>
+    </tr>
+    <tr>
+      <td rowspan="3">5</td>
+      <td>6</td>
+      <td>7</td>
+      <td>8</td>
+    </tr>    
+    <tr>
+      <!-- <td>9</td> -->
+      <td>10</td>
+      <td colspan="2" rowspan="2">11</td>
+      <!-- <td>12</td> -->
+    </tr>
+    <tr>
+      <!-- <td>13</td> -->
+      <td>14</td>
+      <!-- <td>15</td> -->
+      <!-- <td>16</td> -->
+    </tr>
+  </table>
+    
+</body>
+</html>
