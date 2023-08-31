@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    input.hidden:focus::placeholder {
+      color: transparent;
+    }
+  </style>
+</head>
+<body>
+  <!-- input(인라인-블록): 데이터를 입력받는   요소 ex)로그인 검색 회원가입등 -->
+  <!-- 
+    인라인 블록 요소의 특징:
+    기본적인 특징은 인라인 요소(base)와 동일
+    + 블록 요소처럼 가로/세로 길이와, 상하/좌우 여백을 모주 지정 가능
+   -->
+
+   <!-- type 속성: 입력받을 데이터 타입을 지정 -->
+   <!-- 일반 텍스트 사용법 -->
+   <input type="text">
+
+   <!-- 값을 미리 입력 -->
+   <input type="text" value="jw cheon">
+
+   <!-- 입력할 값의 힌트(회색글씨..) -->
+   <input type="text" placeholder="이름을 입력하세요!">
+   <!-- Tip! 포커스 시 사라지는 힌트 -->
+   <input type="text" placeholder="이름을 입력하세요!" class="hidden">
+   
+   <!-- 비활성화: 수정 불가, Tab키로 선택 불가, submit 불가 -->
+   <input type="text" value="disabled 테스트" disabled>
+   
+   <!-- (참고)읽기 전용: 수정 불가, Tab키로 선택 가능, submit 가능 -->
+   <input type="text" value="readonly 테스트" readonly>
+
+   <hr>
+
+   <!-- 체크박스 사용법 -->
+   <!-- 
+    label 바인딩 조건 (둘중에 하나만 만족하면 됨):
+    1. label 요소 내부에 요소를 배치하여 레이블을 요소에 바인딩
+    2. for 속성이 <label>관련 요소의 id 속성과 같아야 함
+    -->
+   <label>
+     <input type="checkbox"> Apple
+   </label>
+   <label>
+     <input type="checkbox"> Banana
+   </label>
+
+  <br>
+
+  <!-- 또는 -->
+  
+<input type="checkbox" id="apple">
+<label for="apple">Apple</label>
+<input type="checkbox" id="banana">
+<label for="banana">Banana</label>
+
+<!-- 
+  label 사용 이점 (웹 접근성과 관련):
+  1. 스크린 리더 사용자(사용자가 요소에 초점을 맞추면 레이블을 소리내어 읽음)
+  2. 매우 작은 영역(예: 확인란)을 클릭하는데 어려움이 있는 사용자
+  -사용자가 요소 내의 텍스트를 클릭하면 입력이 토글되기 때문(히트 영역 증가)
+ -->
+
+ <!-- 값을 미리 체크 -->
+ <label>
+  <input type="checkbox"> Apple
+</label>
+<label>
+  <input type="checkbox" checked> Banana
+</label>
+
+<hr>
+
+<!-- 라디오 버튼 사용법 -->
+<!-- type만 썼을 경우 테스트 -->
+<label>
+  <input type="radio"> Apple
+</label>
+<label>
+  <input type="radio"> Banana
+</label>
+
+<br>
+
+<!-- name 속성으로 그룹화 -->
+<!-- 체크박스는 중복 선택 가능, 라디오는 그룹당 한개만 선택 가능 -->
+<label>
+  <input type="radio" name="fruits" checked> Apple
+</label>
+<label>
+  <input type="radio" name="fruits"> Banana
+</label>
+
+<!-- name이 다른 경우 그룹화 안됨 오타조심~! -->
+
+
+
+<!-- 그 밖의 다른 입력 양식들(input type에서 ctrl + space),(w3school 참고) -->
+
+<hr>
+
+<!-- 버튼 -->
+<input type="button" value="닫기">
+<!-- type 속성을 항상 지정하여 브라우저에게 버튼 유형을 알려주는 게 좋음
+  (브라우저마다 다른 기본값을 지정할 수도 있음) 
+-->
+<button type="button">닫기</button>
+<button type="button"><b>닫기</b><br>테스트</button>
+<!-- <button> 태그의 장점
+  요소 내부에 텍스트 뿐만 아니라 다른 태그를 넣을 수 있음
+-->
+
+<hr>
+<!-- 색상 선택 도구(color Picker) -->
+<label for="favcolor">색상 선택:</label>
+<input type="color" id="favcolor" value="#00ff00">
+
+<hr>
+
+<!-- 날짜 -->
+<label for="birthday">생일:</label>
+<input type="date" id="birthday">
+<br>
+<!-- 날짜 + 시간 -->
+<label for="birthdaytime">생일(날짜/시간):</label>
+<input type="datetime-local" id="birthdaytime">
+<!-- 시간 -->
+<label for="appt">시간 선택:</label>
+<input type="time" id="appt">
+
+<hr>
+
+<!-- 이메일: sumit 시 자동으로 이메일 형식 유효성 검사를 해줌 ex) @없으면 빠꾸 -->
+<form action="signup">
+  <label for="email">이메일:</label>
+  <input type="email" name="email">
+  <button type="submit">제출</button>
+</form>
+
+<hr>
+<!-- 파일 선택(첨부) -->
+<label for="myfile">파일 첨부:</label>
+<input type="file" id="myfile">
+<br>
+<label for="myfile">다중 파일 첨부:</label>
+<input type="file" id="myfile" multiple>
+<br>
+
+<!-- 범위 선택 -->
+<label for="points">점수(0~10)</label>
+<input type="range" id="points" min="0" max="10">
+
+<hr>
+
+<!-- 비밀번호 -->
+<label for="pwd">비밀번호:</label>
+<input type="password" id="pwd">
+
+<hr>
+
+<!-- 셀렉트 박스(콤보 박스) -->
+<!-- 속성
+  value: 서버에 선택한 항목의 값을 보낼 때 필요
+  selected: 항목을 미리 선택
+-->
+<label for="cars">차량선택:</label>
+<select id="cars">
+  <option value="">선택</option>
+  <option value="volvo">볼보</option>
+  <option value="benz">벤츠</option>
+  <option value="audi" selected>아우디</option>
+</select>
+
+<hr>
+
+  <!-- 여러 줄 입력 -->
+  <p>
+    <label for="multi">여러 줄 입력:</label>
+  </p>
+  <textarea id="multi" cols="25" rows="5"></textarea>
+  <br>
+  <textarea id="multi" cols="25" rows="5" spellcheck="false"></textarea>
+  <br>
+  <textarea id="multi" cols="25" rows="5" spellcheck="false" style="resize: none;"></textarea>
+
+  <!-- form: 작성한 내용이 어떤 서버경로로, 어떤 방식(GET, POST)으로 전달될지 설정 -->
+  <form action="경로" method="get">
+    <!-- name 속성: 서버로 전달할 때 유니크하게 구분하기 위한 이름 -->
+    <input type="text" name="name">
+    <input type="text" name="age">
+
+    <!-- <form>태그 안에 있어야 submit 이벤트가 작동 -->
+    <button type="submit">전송</button>
+  </form>
+  
+</body>
+</html>

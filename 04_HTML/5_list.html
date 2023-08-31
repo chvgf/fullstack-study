@@ -4,6 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+
+  <style>
+    span {
+      color: yellow;
+      background-color: black;
+    }
+    div {
+      color: blue;
+      background-color:black;
+    }
+  </style>
 </head>
 <body>
   <!-- list(목록) 요소는 주로 메뉴나 탭 목록에 쓰임 -->
@@ -69,5 +80,66 @@
         </ul>      
     </li>
   </ul>
+
+  <!-- anchor(인라인) 닻, 페이지 이동하는 하이퍼링크를 지정(닻을 내리는 것) -->
+  <!-- 인라인 요소라 수평 배열 -->
+  <!-- 
+    target 속성 : 링크된 페이지를 어디에 표시할지 타겟 지정
+    _self: 현재 탭(기본값)
+    _blank: 새로운 탭
+   -->
+  <a href="https://naver.com">NAVER</a>
+  <a href="https://google.com" target="_blank">Google</a>
+
+  <!-- (참고) 임시 태그 -->
+  <a href="#">임시 태그</a>
+  <!-- 해당 #id 영역으로 이동 -->
+  <a href="#intro">Intro</a>
+  <a href="#guide">Guide</a>
+  <!-- span(인라인): 택스트 구분을 위해 사용(주로 글자에 스타일 적용할 떄) -->
+  <p>
+    <span>동해물</span>과 백두산이 마르고 닳도록
+  </p>
+
+  <!-- span을 div로 바꿔보기 -->
+  <!-- div는 글자를 다루는데 적합하지 않음 -->
+  <p>
+    <div>동해물</div>과 백두산이 마르고 닳도록
+  </p>
+
+  <!-- break(인라인): 줄바꿈 -->
+  <p>
+    동해물과 백두산이<br>
+    마르고 닳도록
+  </p>
+  <!-- 엔터키로 줄바꿈 해도 브라우저에서는 공백 1칸 -->
+  <!-- (참고) HTML에서 공백처리하는 방법 -->
+  <p>
+    동해물과 백두산이 &nbsp;&nbsp;&nbsp;마르고 닳도록
+  </p>
+
+  <!-- horizontal rule(블록): 수평줄 -->
+  <hr>
+
+  <!-- Quiz -->
+  <p>동해물과 백두산이 마르고 닳도록
+    <br>
+     하느님이 보우하사 
+      <span>우리나라</span>
+     만세
+  </p>
+
+  <!-- 임시 태그 이동 테스트 -->
+  <!-- ex) 웹페이지 top 버튼 -->
+  <hr>
+  <h2 id="intro">Intro</h2>
+  <p style="height: 300px;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi magni nobis omnis aperiam amet quia recusandae eos illum. Iure suscipit assumenda sit eius quibusdam aliquid voluptatibus accusantium dicta. Incidunt, dolorum.</p>
+  <p style="height: 300px;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi magni nobis omnis aperiam amet quia recusandae eos illum. Iure suscipit assumenda sit eius quibusdam aliquid voluptatibus accusantium dicta. Incidunt, dolorum.</p>
+  <p style="height: 300px;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi magni nobis omnis aperiam amet quia recusandae eos illum. Iure suscipit assumenda sit eius quibusdam aliquid voluptatibus accusantium dicta. Incidunt, dolorum.</p>
+
+  <h2 id="guide">Guide</h2>
+  <p style="height: 300px;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi magni nobis omnis aperiam amet quia recusandae eos illum. Iure suscipit assumenda sit eius quibusdam aliquid voluptatibus accusantium dicta. Incidunt, dolorum.</p>
+  <p style="height: 300px;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi magni nobis omnis aperiam amet quia recusandae eos illum. Iure suscipit assumenda sit eius quibusdam aliquid voluptatibus accusantium dicta. Incidunt, dolorum.</p>
+  <p style="height: 300px;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi magni nobis omnis aperiam amet quia recusandae eos illum. Iure suscipit assumenda sit eius quibusdam aliquid voluptatibus accusantium dicta. Incidunt, dolorum.</p>
 </body>
 </html>
