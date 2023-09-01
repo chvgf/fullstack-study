@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <!-- 2. 외부 스타일 시트(링크 방식) -->
+  <!-- main.css 통쨰로 가지오 옴 -->
+  <link rel="stylesheet" href="CSS/main.css">
+  <!-- 1.내부 스타일 시트(내장 방식) -->
+  <!-- 
+    장: 별도의 css 파일을 만들지 않고 바로 적용 가능
+    단: css 내용이 많아질 경우 HTML 내부 코드가 복잡해지고,
+    여러 HTML 문서에서 같은 스타일이 반복될 경우 문서마다 반복 작성
+    수정할 때도 문서마다 찾아다니면서 모두 수정(유지보수에 안좋음)
+  -->
+  <style>
+    div {
+      color: red;
+      margin: 10px;
+    }
+  </style>
+</head>
+<body>
+  <!-- 3. 인라인 스타일(인라인 방식) -->
+  <!-- 
+    장: 선택자 없이 해당 요소에 직접 스타일을 작성하므로 편리함
+    단: 우선순위가 제일 높아 스타일을 덮어쓸 수 없음(남발하면 유지보수에 안좋음)
+  -->
+  <div style="color: green;" class="box">천지지지지민</div>
+</body>
+</html>
+
+<!-- 
+  css 선언방식에 따른 우선순위 (cascading Order: 계단식 순서)
+  1순위: 인라인 스타일
+  2순위: 외부 또는 내부 스타일 시트
+  3순위: 브라우저 기본 스타일
+  동일한 우선순위에서 다른 스타일이 정의된 경우 마지막 스타일이 가장 높은 우선순위를 가짐
+-->
+<!-- 
+  일반적으로 웹 프론트엔드 개발을 하면
+  HTML,CSS,JS 파일은 별도로 구별해서 관리하는 것이 유지보수에 좋음
+  HTML안에 CSS,JS 코드를 같이 넣으면 가독성이 떨어지고 불필요한 반복적인 코드가 발생
+-->
