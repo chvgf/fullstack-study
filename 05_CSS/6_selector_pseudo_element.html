@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    /* 가상 요소 선택자: HTML에 가상의 요소를 생성 또는 제어 가능 */
+    /* 
+      ::before, after 사용 시
+      반드시 CSS의 content 속성과 같이 사용
+    */
+    .box {
+      width: 100px;
+      height: 100px;
+      background-color: orange;
+    }
+
+    /* ::before (요소의 내부 앞에 내용을 삽입) */
+    /* .box::before {
+      content: "앞!";
+    } */
+
+    /* ::after (요소의 내부 뒤에 내용을 삽입) */
+    /* .box::after {
+      content: "뒤!";
+    } */
+
+    /* 꼭 텍스트가 아니여도 됨!
+      but! content 속성은 ""로 값을 비워두는 한이 있더라도 필수로 작성해야함
+    */
+    /* ::before, ;::after 가상 요소는 인라인 요소(글자) */
+    .box::after {
+      content: "";
+      /* 가로/세로 길이 지정을 위해 블록 요소로 전환 */
+      display: block;
+      width: 30px;
+      height: 30px;
+      background-color: royalblue;      
+    }
+
+    /* 잘 활용하면 HTML 구조 추가와 class 속성 값의 추가 없이 생성/제어 가능 */
+
+    /* 그 밖에 ::placeholder, ::webkit-scrollbar */
+    .overflow-auto {
+      overflow: auto;
+    }
+
+    /* Tip! 커스텀 스크롤 만들기 */
+    .desogend-scroll::-webkit-scrollbar {
+      /* 스크롤바 두께 */
+      width: 10px;
+    }
+    .desogend-scroll::-webkit-scrollbar-thumb {
+      /* 스크롤바 색상, 모서리 둥글게 */
+      background-color:blue ;
+      border-radius: 2.5px;
+    }
+    .desogend-scroll::-webkit-scrollbar-thumb:hover {
+      background-color: red;
+    }
+    .desogend-scroll::-webkit-scrollbar-thumb:focus {
+      background-color: black;
+    }
+    .desogend-scroll::-webkit-scrollbar-button {
+      background-color: azure;
+      height: 7px;
+    }
+    .desogend-scroll::-webkit-scrollbar-track {
+      background-color: antiquewhite;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    content!
+  </div>
+
+  <br>
+
+  <div class="box overflow-auto desogend-scroll">
+    content!
+    content!
+    content!
+    content!
+    content!
+    content!
+    content!
+    content!
+    content!
+    content!
+    content!
+  </div>
+</body>
+</html>

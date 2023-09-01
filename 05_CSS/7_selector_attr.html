@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    /* 속성 선택자: HTML의 속성과 값으로 요소 선택, []기호 사용 */
+    /* [disabled] {
+      color: red;
+    } */
+
+    /* [type] {
+      color: red;
+      background-color: orange;
+    } */
+    /* [type="password"] {
+      color: red;
+      background-color: orange;
+    } */
+    [value="cheon"] {
+      color: red;
+      background-color: orange;
+    }
+
+    [data-fruit-name] {
+      color: red;
+    }
+
+
+  </style>
+  
+</head>
+<body>
+  <input type="text" value="cheon">
+  <input type="password" value="1234">
+  <input type="text" value="ABCD" disabled>
+  <span data-fruit-name="apple">사과</span>
+</body>
+</html>
+
+<!-- 참고 자료:
+  https://code.tutsplus.com/ko/tutorials/the-30-css-selectors-you-must-memorize--net-16048
+-->
