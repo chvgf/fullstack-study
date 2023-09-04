@@ -133,6 +133,27 @@
     /* border-radius: 50px; */
     border-radius: 50%;
   }
+
+  .container-5 {
+    width: 100px;
+    height: 100px;
+    background-color: orange;
+  }
+
+  .container-5.compare {
+    /* border 로 인해 요소의 크기가 10px 증가 */
+    border: 5px solid red;
+    /* padding 으로 인해 요소의 크기가 40px 증가 */
+    padding: 20px;
+    /* 
+      요소의 크기는 150 x 150 으로 늘어남
+      만약 내가 요소의 가로/세로 길이를 100px로 유지를 하고싶다면 늘어난 50px만큼 빼줘야 함
+    */
+
+    /* 가로/세로 계산에 padding과 border 값도 포함해서 자동으로 content 영역이 줄어듦 */
+    /* 요소에 padding과 border 값이 추가될 때 지정한 크기보다 커지는 것을 방지 */
+    box-sizing: border-box;
+  }
   </style>
 
   
@@ -197,7 +218,12 @@
   <hr>
 
   <h4>4. border-radius 실습</h4>
-  <div class="container-4">
-  </div>
+  <div class="container-4"></div>
+
+  <hr>
+
+  <h4>5. box-sizeing 실습</h4>
+  <div class="container-5 compare">hello</div>
+  <div class="container-5">hello</div>
 </body>
 </html>
