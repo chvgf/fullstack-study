@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    /* 길이를 안주면 기본값 auto */
+    .container-1 {
+      width: 100px;
+      height: 100px;
+      background-color: orange;
+    }
+
+    span {
+      /* 가로/세로 길이 지정 안됨
+        => 레이아웃을 작업하는 용도가 아님, 글자를 제어하는 용도
+      */
+      width: 100px;
+      height: 100px;
+      background-color: orange;
+    }
+
+    .parent-1 {
+      /* width: 300px; */
+      /* max-width: 1000px; */
+      min-width: 1000px;
+      height: 200px;
+      background-color: royalblue;
+    }
+
+    .child-1 {
+      /* max-width: 300px; */
+      min-width: 400px;
+      height: 100px;
+      background-color: orange;
+    }
+
+    .parent-2 {
+      width: 300px;
+      height: 200px;
+      background-color: royalblue;
+    }
+
+    /* html {
+      font-size: 20px;
+    } */
+
+    .child-2 {
+      /* width: 100px; */
+      /* width: 50%; */
+      /* width: 10em;
+      font-size: 10px; */
+      /* width: 10rem; */
+      width: 50vw;
+      height: 100px;
+      /* height: 90%; */
+      /* height: 50vh; */
+      background-color: orange;
+    }
+
+    .container-2 .item {
+      width: 100px;
+      height: 100px;
+      background-color: orange;
+      border: 4px solid red;
+  }
+
+  .container-2 .item:first-child {
+      /* margin: -50px; */
+
+      /* margin: 10px; */
+      /* margin: 10px 20px; */
+      /* margin: 10px 20px 30px; */
+      /* margin: 10px 20px 30px 40px; */
+      /* margin-bottom: 20px; */
+
+      /* Tip! 블록 요소의 수평 가운데 정렬 */
+      margin: 0 auto;
+      
+  }
+
+  .container-2 .item:last-child {
+    /* 내부 여백 지정 시 요소의 크기가 커짐 */
+    /* 즉, width, height는 콘텐츠의 크기를 의미함 */
+    /* padding: 10px; */
+    /* padding: 10px 20px; */
+    /* padding: 10px 20px 30px; */
+    /* padding: 10px 20px 30px 40px; */
+    padding-left: 20px;
+  }
+
+  .container-3 .item {
+    width: 100px;
+    height: 100px;
+    background-color: orange;
+  }
+
+  .container-3 .item:first-child {
+      /* 실선 */
+      border: 10px solid;
+      /* padding과 같이 요소의 크기가 커짐 */
+      color: blue;
+      /* 지정된 색상 값이 없으면 요소의 글꼴 색상이 적용됨 */
+      border: 10px solid gray;
+  }
+
+  .container-3 .item:nth-child(2) {
+    /* 파선 */
+    border: 10px dashed #ff0000;
+  }
+
+  .container-3 .item:nth-child(3) {
+    /* 점선 */
+    border: 10px dotted #0000ff;
+    border: 10px dotted #36b3ec;
+    border: 10px dotted rgb(255, 255, 150);
+    border: 10px dotted rgba(255, 255, 150,0.3);
+  }
+
+  .container-4 {
+    width: 100px;
+    height: 100px;
+    background-color: orange;
+    margin: 20px;
+    /* border-radius: 10px; */
+    /* border-radius: 0 20px; */
+    /* border-radius: 0 20px 40px; */
+    /* border-radius: 0 20px 40px 60px; */
+
+    /* Tip! 원 만들기 */
+    /* border-radius: 50px; */
+    border-radius: 50%;
+  }
+  </style>
+
+  
+</head>
+<body>
+  <h4>1-1. width, height 실습</h4>
+  <div class="container-1">Hello</div>
+  <span>Hello</span>
+  
+  <hr>
+
+  <h4>1-1. max-, min- 실습</h4>
+  <div class="parent-1">
+    <div class="child-1"></div>
+  </div>
+
+  <hr>
+  <!-- 
+    자주 사용하는 css 단위
+
+    1.px (픽셀):
+      디바이스가 표현할 수 있는 화면의 점
+      1920 x 1080 해상도에서 1920,1080 숫자들이 가로,세로에 들어가는 픽셀의 수를 의미
+    2. %(상대적 백분율):
+      특정 값을 기준으로 몇 퍼센트의 크기를 가지는지 표현하는 단위
+    3.  em(요소의 글꼴 크기):
+      요소 자신의 글꼴 크기를 기준으로 하는 상대 단위
+      예를 들어 요소의 글꼴 크기가 10px이면 1em은 10px을 의미
+    4. rem(root-em, 루트 요소의 글꼴 크기):
+      루트(최상위) 요소(html)의 글꼴 크기를 기준으로 하는 상대 단위
+      루트의 글꼴 크기 기본값은 16px이므로 1rem은 16px을 의미
+    5. vw(뷰포트의 가로 너비의 백분율):
+      예를 들어 뷰포트의 가로가 1920px 인 경우 10vw는 192px을 의미
+      브라우저 창 크기 조절 시 상대적으로 바뀜
+    6. vh(뷰포트의 세로 높이의 백분율):
+      예를 들어 뷰포트의 세로가 1080px 인 경우 10vh는 108px을 의미
+      브라우저 창 크기 조절 시 상대적으로 바뀜
+  -->
+  <h4>CSS 단위 실습</h4>
+  <h4>1-1. max-, min- 실습</h4>
+  <div class="parent-2">
+    <div class="child-2"></div>
+  </div>
+
+  <hr>
+
+  <h4>2. margin, padding 실습</h4>
+  <div class="container-2">
+    <div class="item"></div>
+    <div class="item"></div>
+  </div>
+
+  <hr>
+
+  <h4>3. border 실습</h4>
+  <div class="container-3">
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+  </div>
+
+  <hr>
+
+  <h4>4. border-radius 실습</h4>
+  <div class="container-4">
+  </div>
+</body>
+</html>

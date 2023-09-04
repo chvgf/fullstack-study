@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    div {
+      /* !important 는 점수가 무한대
+        css 초보자들이 종종 사용하는데 되도록이면 사용 지양
+        남발하면 나중에 스타일을 바꾸려고 할 때 수정이 불가
+
+        정말 이 스타일이 변경되어서는 안되는 경우에만 사용!!
+      */
+      color:red !important;
+    }
+
+    #hello {
+      color: yellow;
+    }
+    
+    .hello {
+      color: green;
+    }
+
+    /* 선택자를 여러개 사용하여 명확하게 선택하면 우선순위 점수가 올라감 */
+    /* div.hello {
+      color: green
+    }*/
+    /* 점수가 같으면, 가장 마지막에 해석된 스타일 적용! */
+    .hello {
+      color: orange;
+    }
+    
+    div {
+      color: royalblue;
+    }
+    
+    * {
+      color: darkblue;
+    }
+
+    body {
+      color: violet;
+    }
+    
+
+    #jw {
+      font-size: 100px;
+      color: aquamarine;
+    }
+  </style>
+</head>
+<body>
+  <!-- 인라인 스타일 방식은 다른 곳에서 스타일을 수정해도
+    우선순위에 밀려 적용되지 않으므로(수정 불가한상태가 됨) 지양하는 것이 좋음
+  -->
+  <div
+    id="hello"
+    class="hello"
+    style="color: olive;"
+    >
+    Hello world!
+  </div>
+</body>
+</html>
