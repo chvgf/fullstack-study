@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    .grandparent {
+      width: 800px;
+      height: 550px;
+      background-color: plum;
+    }
+
+    .parent {
+      width: 600px;
+      height: 350px;
+      background-color: royalblue;
+
+      /* 부모 요소에 위치 기준을 만들어줌 */
+      position: relative;
+      /* (참고) absolute나 fixed를 쓰게 되면 일반 배치 흐름에서 벗어나 
+      레이아웃 구조가 무너지기 때문에 무난한 relative를 주로 이용 */
+    }
+
+    .child-1 {
+      width: 250px;
+      height: 150px;
+      background-color: orange;
+    }
+
+    .child-2 {
+      width: 350px;
+      height: 250px;
+      background-color: coral;
+
+      /* 상위 요소 중 위치 기준이 존재하는 가장 가까운 요소를 기준으로 배치 */
+      /* absolute를 쓰면 일반 배치 흐름에서 벗어남(제외됨) */
+      position: absolute;
+      bottom: 30px;
+      right: 60px;
+      /* 위치 기준 요소가 없으면 최상위 루트(html)까지 타고 올라감 =>결국 
+      뷰포트가 기준 */
+    }
+
+    .child-3 {
+      width: 250px;
+      height: 300px;
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+  <div class="grandparent">
+    <div class="parent">
+      <div class="child-1">1</div>
+      <div class="child-2">2</div>
+      <div class="child-3">3</div>
+    </div>
+  </div>
+</body>
+</html>
