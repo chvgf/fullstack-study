@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    .main-background {
+      width: 100%;
+      height: 500px;
+      background-image: url(img/11.JPG);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      text-align: center;
+
+      position: relative;
+
+      /* margin collapse 현상(마진 상쇄) 피하기 */
+      /* 1.패딩을 최대한 활용한다 */
+      color: #fff;
+      /* padding: 50px; */
+      /* 2. 테두리가 안붙게 살짝 떨어뜨림(꼼수) */
+      padding: 0.1px;
+    }
+
+    .main-title {
+      color: #fff;
+      font-size: 40px;
+      margin: 100px;
+      /* (참고) margin collapse 현상(마진 상쇄):
+        원래 박스들의 테두리가 만나면 margin이 합쳐짐(박스가 내부에서 만나든 외부에서 만나든 상관없이)
+        마진을 하나로 합쳐주고 둘 다 마진이 있으면 둘 중에 더 큰 마진을 하나만 적용
+
+        1. 박스 2개가 부모-자식 관계로 위쪽 테두리가 겹친 상태
+        2. 박스 2개가 형제 관계로 위,아래 테두리가 겹친 상태
+      */
+    }
+
+    main.content {
+      color: #fff;
+    }
+
+    .main-button {
+      padding: 10px 30px;
+      font-size: 20px;
+      background-color: #fff;
+      border: none;
+      border-radius: 5px;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+    .main-button:hover {
+      background-color: #eee;
+    }
+    
+    /* 겹치는 레이아웃  만들기 */
+    .sub-description {
+      /* 화면이 작을 때는 80%만, 넓어지면 최대 700px 까지 */
+      width: 80%; /* 부모 wudth의 80% */
+      max-width: 700px;
+      padding: 10px;
+      background-color: #eee;
+      border-radius: 20px;
+      margin: 0 auto;
+
+      /* relative 사용 시 */
+      /* position: relative;
+      top: 50px; */
+
+      /* absolute 사용 시 */
+      position: absolute;
+      bottom: -100px;
+      left: 0;
+      right: 0;
+      margin: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="main-background">
+    <h4 class="main-title">Buy our excellent shoes!</h4>
+    <p class="main-content">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem, voluptatem sapiente atque magni voluptatum veritatis, officiis corrupti itaque sequi nisi ducimus ipsa, deserunt ut doloremque possimus animi ratione. Doloremque, recusandae.
+    </p>
+    <button type="button" class="main-button">Buy Now</button>
+
+    <div class="sub-description">
+      <h4>How we design our shoes</h4>
+      <p>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit.<br>
+        Perferendis mollitia voluptatum delectus dolorem.<br>
+        Adipisci ducimus itaque dolorem similique quae sint possimus!<br>
+      </p>
+    </div>
+  </div>
+
+  <div class="history">
+    <h4>Our best shoes & History</h4>
+    <ul>
+      <li>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Neque, minima non ut blanditiis, mollitia veniam excepturi quia corporis provident quibusdam fuga odit modi repellat voluptas saepe libero quam, praesentium nihil?</li>
+      <li>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum accusamus molestiae possimus distinctio cupiditate culpa, aut velit commodi et! Rerum est, ad repellendus vero distinctio ab modi dicta officia voluptates?</li>
+      <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, molestias et soluta at atque officia perferendis voluptates ipsa, animi optio dolor ex aperiam asperiores quasi quis, iste velit. Omnis, veniam?</li>
+      <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione eos ipsam facilis error dolorum quidem sunt exercitationem, iure atque quis reprehenderit sapiente esse similique tenetur a harum. Cumque, veritatis id!</li>
+      <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum qui nobis beatae fugiat quam dolorem blanditiis?</li>
+    </ul>
+  </div>
+</body>
+</html>

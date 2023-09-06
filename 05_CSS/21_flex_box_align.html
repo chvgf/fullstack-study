@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    .flex-contaniner {
+      display: flex;
+      background-color: royalblue;
+    }
+    .flex-contaniner > div {
+      width: 100px;
+      height: 100px;
+      line-height: 100px;
+      margin: 10px;
+      text-align: center;
+      font-size: 30px;
+      background-color: #f1f1f1;
+    }
+
+    .flex-nowrap {
+      flex-wrap: nowrap;
+    }
+    .flex-wrap {
+      flex-wrap: wrap;
+    }
+
+    .justify-content-start {
+      justify-content: flex-start;
+    }
+    .justify-content-end {
+      justify-content: flex-end;
+    }
+    .justify-content-center {
+      justify-content: center;
+    }
+    .justify-content-between {
+      justify-content: space-between;
+    }
+    .justify-content-around {
+      justify-content: space-around;
+    }
+    .justify-content-evenly {
+      justify-content: space-evenly;
+    }
+
+
+    div.a {
+
+    }
+  </style>
+</head>
+<body>
+  <!-- (참고) flex box 를 사용하면 Flex Item(자식 요소)들은 블록 요소로 변경됨 -->
+
+  <h1>flex-wrap: 줄바꿈 여부를 지정</h1>
+  <h2>nowrap; (기본값, 줄바꿈 없음)</h2>
+  <h3>기본적으로 Flex Contaniner는 한 줄에서 모든 아이템들을 표시하려고 시도함</h3>
+  <div class="flex-contaniner flex-nowrap">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+    <div>6</div>
+  </div>
+  <p>브라우저 창 크기를 조절해 보세요.</p>
+
+  <h2>wrap: (자동 줄바꿈 시도)</h2>
+  <div class="flex-contaniner flex-wrap">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+    <div>6</div>
+  </div>
+  <p>브라우저 창 크기를 조절해 보세요.</p>
+
+  <h1>justify-content: 주축의 정렬 방법, 보통 요소의 수평 정렬에 자주 사용</h1>
+  <h2>flex-start; (기본값)</h2>
+  <div class="flex-contaniner justify-content-start">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+  </div>
+
+  <h2>flex-end;(우측 정렬)</h2>
+  <div class="flex-contaniner justify-content-end">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+  </div>
+
+  <h2>center; (가운데 정렬)</h2>
+  <div class="flex-contaniner justify-content-center">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+  </div>
+
+  <h2>space-between; (요소들 사이에 동일한 간격 유지)</h2>
+  <div class="flex-contaniner justify-content-between">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+  </div>
+
+  <h2>space-around; (요소들 주위에 동일한 간격 유지)</h2>
+  <div class="flex-contaniner justify-content-around">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+  </div>
+
+  <h2>space-evenly; (요소들 사이와 주위에 동일한 간격 유지)</h2>
+  <div class="flex-contaniner justify-content-evenly">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+  </div>
+</body>
+</html>

@@ -67,12 +67,22 @@
       /* position: fixed; */
     }
   </style>
+
+  <script>
+    // 밑에 깔린 요소도 같이 클릭되는 지 확인하는 코드
+    function log(params) {
+      console.log(params);
+    }
+    // (참고) 이벤트 버블링:
+    // 이벤트가 제일 깊은 곳에 있는 요소에서 시작해 부모 요소를 거슬러 올라가며 발생하는 모양이 마치 물속 거품(bibble)과 닮았기 때문
+    // 몇몇 이벤트(Focus)를 제외하곤 대부분의 이벤트가 버블링 됨
+  </script>
 </head>
 <body>
-  <div class="parent">
-    <div class="child-1">1</div>
-    <div class="child-2">2</div>
-    <div class="child-3">3</div>
+  <div class="parent" onclick="log('parent')">
+    <div class="child-1" onclick="log('child-1')">1</div>
+    <div class="child-2" onclick="log('child-2')">2</div>
+    <div class="child-3" onclick="log('child-3')">3</div>
   </div>
 
   <!-- (참고)
