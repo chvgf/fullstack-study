@@ -105,7 +105,7 @@
 
   <!-- Tip! -->
   <h1>요소 콘텐츠 크기를 같은 비율로 나누기</h1>
-  <h2>flex 1; = flex:grwo1 shrink1 basis0% 의 단축 속성</h2>
+  <h2>flex 1; = flex:grow1 shrink1 basis0% 의 단축 속성</h2>
   <div class="flex-container">
     <div style="flex: 1;">1</div>
     <div style="flex: 1;">1</div>
@@ -113,7 +113,7 @@
   </div>
 
   <h1>요소 콘텐츠 크기를 비율로 나누기</h1>
-  <h2>flex 1; = flex:grwo:n shrink:1 basis:0% 의 단축 속성</h2>
+  <h2>flex 1; = flex:grow:n shrink:1 basis:0% 의 단축 속성</h2>
   <h3>주의!! boredr, padding 값에 의해 콘텐츠 크기가 변하면
     비율이 정화하게 안 맞을 수 있음</h3>
   <div class="flex-container">
@@ -129,5 +129,50 @@
     <div style="flex: 3;">3</div>
     <div style="flex: 2;">2</div>
   </div>
+
+  <!-- <h1>특정 아이템만 수직 정렬하기</h1>
+  <div class="flex-container" style="height: 200px; justify-content: flex-end;">
+    <button type="button" style="width: 50px; height: 40px;">추가</button>
+    <button type="button" style="width: 50px; height: 40px;">수정</button>
+    <button type="button" style="width: 50px; height: 40px; align-self: flex-end;">삭제</button>
+  </div> -->
+  <h1>특정 아이템만 수직 정렬하기</h1>
+  <div class="flex-container" style="height: 200px; justify-content: flex-end;">
+    <div class="ab">
+      <button type="button" style="width: 50px; height: 40px;">추가</button>
+      <button type="button" style="width: 50px; height: 40px;">수정</button>
+      <button type="button" style="width: 50px; height: 40px; align-self: flex-end;">삭제</button>
+    </div>
+  </div>
 </body>
 </html>
+
+
+
+<!-- (정리) Quiz
+  Q1: "display: flex;가 지정된 요소의 자식 요소를 Flex ???이라 부릅니다." 
+    에서 ???에 들어갈 용어는?
+  A1: items (부모 요소는 Flex Container)
+
+  Q2: Flex Container의 주 축을 지정하는 속성은?
+  A2: flex-dorection (기본값 row = 수평 정렬이 되는 구조)
+
+  Q3: flex-wrap 속성의 기본값은?
+  A3: nowrap (공간이 부족해도 아이템들이 전부 한 줄에 표시됨)
+
+  Q4: 교차 축(Cross-axis)의 한 줄 정렬을 위한 속성?
+  A4: align-items
+
+  Q5: Flex Item의 증가 너비를 지정하는 속성은?
+  A5: flex-grow
+  
+  Q6: flex-grow 속성의 기본값은?
+  A6: 0(기본적으로 요소의 너비가 증가하지 않음)
+  
+  Q7: flex-shrink 속성의 기본값은?
+  A7: 1(기본적으로 요소의 너비가 같은 비율로 감소함)
+-->
+
+<!-- Quiz: Flexbox Froggy 
+  https://flexboxfroggy.com/#ko
+-->
