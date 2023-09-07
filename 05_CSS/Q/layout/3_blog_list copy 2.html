@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>blog</title>
+
+  <style>
+    /* 공통스타일은 앞부분에 작성 */
+    ul {
+      list-style: none;
+    }
+    a {
+      text-decoration: none;
+    }
+
+    ul.navbar {
+      display: flex;
+    }
+
+    li { 
+      width: 70px;
+      height: 30px;
+      background-color: antiquewhite;
+      border: 5px solid white;
+      border-radius: 10px;
+      text-align: center;
+      line-height: 30px;
+      /* vertical-align: middle; */
+    }
+    li a {
+
+    }
+
+    .container {
+      /* position: relative; */
+      display: flex;
+      margin:  0 auto;
+      width: 800px;
+    }
+
+    .content-header {
+      display: flex;
+    }
+    
+    .blog-content {
+      width: 70%;
+    }
+
+    .blog-img {
+      width: 30%;
+    }
+
+    .img {
+      width: 50px;
+      height: 50px;
+      margin: auto 0;
+    }
+    .img-1 {
+      /* width: 200px;
+      height: 200px; */
+      width: 100%;
+      /* position: absolute; */
+      right: 10px;
+      top: 5px;
+
+    }
+
+    .span-1 {
+      color: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+  <!-- Tip! 레이아웃을 만드는 기본
+    뭘 만들든 레이아웃은 항상 박스부터 만들고 시작하면 됨
+    그리고 이 박스들을 전부 <div>로 구현해 놓으면 됨(물론 시멘틱 태그도 최대한 활용)
+    그리고 안에 글 넣고 그림 넣고 하면 끝!!
+
+    이때 <div>는 블록 요소이기 때문에 위아래로 배치
+    좌우로 나란히 배치하고 싶으면 float(🤣), inline-block(👌), Flexbox(👍) 
+  -->
+  
+  <!-- navbar -->
+  <nav>
+    <ul class="navbar">
+      <li><a href="#">영화</a></li>
+      <li><a href="#">맛집</a></li>
+      <li><a href="#">IT</a></li>
+      <li><a href="#">컴퓨타</a></li>
+    </ul>
+  </nav>
+
+  <!-- blog list item -->
+  <div class="container">
+    <div class="blog-content">
+      <div class="content-header">
+        <!-- 프로필 이미지 -->
+        <img class="img" src="img/logo_resize.png" alt="aa">
+        <!-- 작성자, 시간 -->
+        <div class="">
+          <h4 class="">천준우 <br> <span class="span-1">1시간 전</span></h4>
+        </div>
+        
+      </div>
+      <div>
+        <!-- 글 제목, 글 내용 -->
+        <h4>가성비 맛집을 발견했어요!</h4>
+        <!-- <br> -->
+        <span>
+          소고기가 맛있어.초밥 맛있어소고기가 맛있어.초밥 맛있어
+          소고기가 맛있어.초밥 맛있어소고기가 맛있어.초밥 맛있어소고기가 맛있어.초밥 맛있어
+          소고기가 맛있어.초밥 맛있어소고기가 맛있어.초밥 맛있어
+        </span>
+      </div>
+    </div>
+    <div class="blog-img">
+      <!-- 샘플 이미지 -->
+      <img class="img-1" src="img/logo_resize.png" alt="bb">
+    </div>
+  </div>
+</body>
+</html>
