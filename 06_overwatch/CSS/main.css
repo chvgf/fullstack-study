@@ -1,0 +1,144 @@
+.logo-h {
+  width: 100px;
+  height: 60px;
+  position: relative;
+  left: 20px;
+  top: 50px;
+}
+.navbar-ul {
+  display: flex;
+  justify-content: center;
+}
+li {
+  padding: 20px;
+  height: 5px;
+  border-radius: 6px;
+  background-color: rgba(227, 206, 238, 0.3);
+  text-align: center;
+  line-height: 5px;
+  color: #fff;
+}
+li + li {
+  margin-left: 20px;
+}
+
+
+
+
+
+/* 화면의 전체 배경 지정 */
+body {
+  background-image: url("../images/bg.jpg");
+  /* height: 100%; */
+  height: 100vh;
+  /* 이미지를 가득 채우고 반복하지 않도록 수정 */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* 앞에서 만든 각 요소에 선택자를 먼저 작성 */
+.container {
+  padding: 50px 0;
+}
+.container .heroes {
+  display: flex;
+  /* 기본적으로 줄바꿈되지 않고
+    기본 감소 너비 비율이 1이여서
+    한 줄에 모든 요소가 줄어들어 표시
+  */
+  flex-wrap: wrap;
+
+  /* 영역 확인 용 (작업이 다 끝나면 삭제) */
+  /* background-color: orange; */
+  justify-content: center;
+  max-width: 700px;
+
+  /* flex로도 정렬 가능하지만 그렇게 하면 더 복잡해짐
+    간단히 해결할 수 있는 것은 flex 남발하지 않는 것을 권장
+  */
+  margin: 0 auto; /* 사용 조건: 블록 요소에 가로 사이즈(width)가 명시되어 있는 경우사용! */
+  padding: 40px 20px;
+}
+.container .heroes .hero {
+  width: 80px;
+  height: 84px;
+  margin: 4px;
+  background-color: #555;
+
+  /* 테투리선, 기울기 추가 */
+  border: 3px solid #fff;
+  transform: skewX(-14deg);
+  /* 모서리 둥글게 ,요소의 크기를 유지하도록 처리 */
+  border-radius: 10px;
+  box-sizing: border-box;
+  
+  /* 전환 효과 주기 */
+  transition:
+  0.1s,
+  background-color .6s;
+  /* 이미지 넘치는 부분 잘라내기 */
+  overflow: hidden;
+}
+.container .heroes .hero:hover {
+  background-color: #ff9c00;
+  /* transform 속성을 덮어 쓰면서 기울임이 없어짐 */
+  transform: scale(1.3) skewX(-14deg);
+  /* position 값이 없어도 Flex Item이라 사용 가능(flex없을 때는 position 있어야 함) */
+  z-index: 1;
+}
+.container .heroes .hero .image {
+  width: 140%;
+  height: 100%;
+
+  background-position: center;
+  /* background-size: cover; */
+  background-size: 90px;
+  background-repeat: no-repeat;
+  transform: skewX(14deg) translateX(-16px);
+}
+.container .heroes .hero:nth-child(1) .image { background-image: url("../images/hero1.png"); }
+.container .heroes .hero:nth-child(2) .image { background-image: url("../images/hero2.png"); }
+.container .heroes .hero:nth-child(3) .image { background-image: url("../images/hero3.png"); }
+.container .heroes .hero:nth-child(4) .image { background-image: url("../images/hero4.png"); }
+.container .heroes .hero:nth-child(5) .image { background-image: url("../images/hero5.png"); }
+.container .heroes .hero:nth-child(6) .image { background-image: url("../images/hero6.png"); }
+.container .heroes .hero:nth-child(7) .image { background-image: url("../images/hero7.png"); }
+.container .heroes .hero:nth-child(8) .image { background-image: url("../images/hero8.png"); }
+.container .heroes .hero:nth-child(9) .image { background-image: url("../images/hero9.png"); }
+.container .heroes .hero:nth-child(10) .image { background-image: url("../images/hero10.png"); }
+
+.container .heroes .hero:nth-child(11) .image { background-image: url("../images/hero11.png"); }
+.container .heroes .hero:nth-child(12) .image { background-image: url("../images/hero12.png"); }
+.container .heroes .hero:nth-child(13) .image { background-image: url("../images/hero13.png"); }
+.container .heroes .hero:nth-child(14) .image { background-image: url("../images/hero14.png"); }
+.container .heroes .hero:nth-child(15) .image { background-image: url("../images/hero15.png"); }
+.container .heroes .hero:nth-child(16) .image { background-image: url("../images/hero16.png"); }
+.container .heroes .hero:nth-child(17) .image { background-image: url("../images/hero17.png"); }
+.container .heroes .hero:nth-child(18) .image { background-image: url("../images/hero18.png"); }
+.container .heroes .hero:nth-child(19) .image { background-image: url("../images/hero19.png"); }
+.container .heroes .hero:nth-child(20) .image { background-image: url("../images/hero20.png"); }
+
+.container .heroes .hero:nth-child(21) .image { background-image: url("../images/hero21.png"); }
+.container .heroes .hero:nth-child(22) .image { background-image: url("../images/hero22.png"); }
+.container .heroes .hero:nth-child(23) .image { background-image: url("../images/hero23.png"); }
+.container .heroes .hero:nth-child(24) .image { background-image: url("../images/hero24.png"); }
+.container .heroes .hero:nth-child(25) .image { background-image: url("../images/hero25.png"); }
+.container .heroes .hero:nth-child(26) .image { background-image: url("../images/hero26.png"); }
+.container .heroes .hero:nth-child(27) .image { background-image: url("../images/hero27.png"); }
+.container .heroes .hero:nth-child(28) .image { background-image: url("../images/hero28.png"); }
+.container .heroes .hero:nth-child(29) .image { background-image: url("../images/hero29.png"); }
+.container .heroes .hero:nth-child(30) .image { background-image: url("../images/hero30.png"); }
+
+.container .heroes .hero:nth-child(31) .image { background-image: url("../images/hero31.png"); }
+.container .heroes .hero:nth-child(32) .image { background-image: url("../images/hero32.png"); }
+
+.container .logo {
+  max-width: 300px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.container .logo img {
+  /* 부모 요소가로 너비에 100p%, 300px보다 커질 수 없다 */
+  width: 100%;
+}
