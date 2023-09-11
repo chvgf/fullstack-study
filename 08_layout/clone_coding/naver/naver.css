@@ -1,0 +1,160 @@
+  /* 공통 스타일 */
+  * {
+    box-sizing: border-box;
+    outline: none;
+  }
+  body {
+    font-family: Dotum, '돋움' sans-serif;
+    background-color: #f5f6f7;
+  }
+  a {
+    text-decoration: none;
+    color:#000;
+  }
+  input, select, button {
+    width: 100%;
+    height: 51px;
+    border: 1px solid #dadada;
+    padding: 10px 14px;
+  }
+  input.hidden:focus::placeholder {
+    color: transparent;
+  }
+
+  /* 헤더 영역 */
+  header {
+    width: 100%;
+    /* background-color: orange; */
+  }
+  header .top {
+    max-width: 768px;
+    height: 124px;
+    margin: 0 auto;
+    /* background-color: beige; */
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* 메인 영역 */
+  #container {
+    max-width: 768px;
+    /* height: 996px;  영역 확인을 위해 임시로 넣는 높이 */
+    /* background-color: cornflowerblue; */
+    margin: 0 auto;
+  }
+  #container .section-input {
+    width: 460px;
+    margin: 0 auto;
+    /* background-color: coral; */
+  }
+  .input-group-row-date {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  .select-1 {
+    margin: 0 10px;
+    margin-top: 8px;
+  }
+  /* #containner .name {
+    margin-top: 20px;
+  } */
+  .section-input {
+    position: relative;
+  }
+  .id-naver {
+    position: absolute;
+    right: 15px;
+    top: 40px;
+    color: #777777;
+  }
+  input + input {
+    margin-top: 20px;
+  }
+  .btn-0 {
+    display: flex;
+    align-items: center;
+    /* margin: auto 0; */
+  }
+  .btn-1 {
+    width: 150px;
+    height: 51px;
+    background-color: #03c75a;
+    /* border: none; */
+    color: #f5f6f7;
+    margin-left: 10px;
+    margin-top: 8px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  .btn-1:active {
+    background-color: #407959;
+  }
+  .btn-2 {
+    width: 100%;
+    height: 50px;
+    background-color: #03c75a;
+    /* border: none; */
+    color: #f5f6f7;
+    margin-top: 10px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  .btn-2:active {
+    background-color: #407959;
+  }
+  .input-main {
+    margin-top: 20px;
+  }
+  .container .name{
+    margin-top: 30px;
+  }
+  label input, select {
+    margin-top: 8px;
+  }
+  /* label select {
+    margin-top: 8px;
+  } */
+  
+  /* 푸터 영역 */
+  footer {
+    width: 100%;
+    /* background-color: cadetblue; */
+  }
+  footer .bottom {
+    width: 460px;
+    max-width: 768px;
+    height: 83px;
+    margin: 0 auto;
+    font-size: 13px;
+    color: #777777;
+    
+    
+    /* background-color: burlywood; */
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .copyright {
+    margin-top: 8px;
+  }
+  .bt-menu > a + a {
+    border-left: 1px solid black;
+  }
+  .bt-menu a {
+    padding: 0 10px;
+    color: #777777;
+  }
+  .bt-menu a:hover {
+    text-decoration: underline;
+  }
+  .bt-menu {
+    display: flex;
+    justify-content: center;
+  }
+  
+  

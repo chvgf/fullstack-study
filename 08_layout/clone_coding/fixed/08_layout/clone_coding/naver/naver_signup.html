@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>네이버 : 회원가입</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+  <link rel="stylesheet" href="./css/naver_signup.css">
+</head>
+<body>
+  <!-- 헤더 영역 -->
+  <header>
+    <!-- 가운데 정렬을 위한 inner div 영역 -->
+    <div class="top">
+      <h1 class="logo">
+        <a href="#">
+          <img src="https://ssl.pstatic.net/static/nid/join/m_logo_naver.png" alt="네이버 로고">
+        </a>
+      </h1>
+    </div>
+  </header>
+
+  <!-- 메인 영역 -->
+  <main id="container">
+    <!-- 가운데 정렬을 위한 inner div 영역 -->
+    <!-- input 영역 -->
+    <div class="section-input">
+      <!-- input 들을 그룹으로 묶음: 첫번째 그룹 -->
+      <div class="input-group">
+        <!-- label에 상하 여백을 주기 위한 방법(블록 요소로 묶던가 label 자체를 블록 요소로 바꾸던가) -->
+        <div class="label-margin">
+          <label for="id">아이디</label>
+        </div>
+        <!-- input 그룹 내 한 줄을 묶음 -->
+        <div class="input-group-row">
+          <input type="text" id="id" name="id" maxlength="20">
+          <span class="id-url">@naver.com</span>
+        </div>
+        <div class="label-margin">
+          <label for="pswd1">비밀번호</label>
+        </div>
+        <input type="password" id="pswd1" name="pswd1">
+        <div class="label-margin">
+          <label for="pswd2">비밀번호 재확인</label>
+        </div>
+        <input type="password" id="pswd2" name="pswd2">
+      </div>
+
+      <!-- input 들을 그룹으로 묶음: 두번째 그룹 -->
+      <div class="input-group">
+        <div class="label-margin">
+          <label for="name">이름</label>
+        </div>
+        <input type="text" id="name" name="name">
+        <div class="label-margin">
+          <label for="yy">생년월일</label>
+        </div>
+
+        <!-- 상대 비율(%)을 쓰던가 아니면 flex container로 감싸고 flex item들의 비율을 1:1:1로 만드는 방법도 있음 -->
+        <input type="text" id="yy" name="yy" placeholder="년(4자)" class="birth-year">
+        <select name="mm" id="mm" class="birth-month">
+          <option value="" selected>월</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+        </select>
+        <input type="text" id="dd" name="dd" placeholder="일" class="birth-date">
+
+        <div class="label-margin">
+          <label for="gender">성별</label>
+        </div>
+        <select name="gender" id="gender">
+          <option value="" selected>성별</option>
+          <option value="M">남자</option>
+          <option value="F">여자</option>
+          <option value="U">선택 안함</option>
+        </select>
+        <div class="label-margin">
+          <label for="email">본인 확인 이메일<span class="sub-title">(선택)</span></label>
+        </div>
+        <input type="email" id="email" name="email" placeholder="선택입력">
+      </div>
+
+      <!-- input 들을 그룹으로 묶음: 세번째 그룹 -->
+      <div class="input-group">
+        <div class="label-margin">
+          <label for="phoneNo">휴대전화</label>
+        </div>
+        <div class="input-group-row">
+          <select name="nationNo" id="nationNo">
+            <option value="233">가나 +233</option>
+            <option value="241">가봉 +241</option>
+            <option value="82" selected>대한민국 +82</option>
+            <option value="852">홍콩 +852</option>
+          </select>
+        </div>
+        <div class="input-group-row">
+          <!-- flex container로 감싼다면 인증번호 받기 버튼만 고정 길이를 주고 전화번호 입력은 flex: 1; -->
+          <!-- 네이버의 경우: input을 감싸는 부모 div에 패딩값을 줘서 input 길이를 조정, 버튼은 absolute로 배치 -->
+          <input type="tel" id="phoneNo" name="phoneNo" placeholder="전화번호 입력">
+          <button type="button" class="btn btn-verify">인증번호 받기</button>
+        </div>
+        <div class="input-group-row">
+          <input type="number" id="authNo" name="authNo" placeholder="인증번호 입력하세요" maxlength="4" disabled>
+        </div>
+      </div>
+
+      <div class="btn_area">
+        <button type="button" class="btn btn-join">가입하기</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- 푸터 영역 -->
+  <footer>
+    <!-- 가운데 정렬을 위한 inner div 영역 -->
+    <div class="bottom">
+      <!-- 하단 메뉴 -->
+      <div class="bt-menu">
+        <!-- 메뉴는 ul, li 태그를 주로 사용(메뉴 목록을 의미) -->
+        <ul>
+          <li>
+            <a href="#">이용약관</a>
+          </li>
+          <li>
+            &nbsp;|&nbsp;
+            <a href="#">개인정보처리방침</a>
+          </li>
+          <li>
+            &nbsp;|&nbsp;
+            <a href="#">책임의 한계와 법적고지</a>
+          </li>
+          <li>
+            &nbsp;|&nbsp;
+            <a href="#">회원정보</a>
+          </li>
+          <li>
+            &nbsp;|&nbsp;
+            <a href="#">고객센터</a>
+          </li>
+        </ul>
+      </div>
+      <!-- 카피라이트 -->
+      <div class="copyright">
+        &copy; Copyright NAVER Corp. All Rights Reserved.
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

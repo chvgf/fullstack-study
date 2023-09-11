@@ -6,6 +6,19 @@
   <title>Document</title>
 
   <style>
+    .menu-item {
+      list-style: none;
+      /* padding: 10px; */
+    }
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    ul.menu {
+      display: flex;
+    }
+
     .main-background {
       width: 100%;
       height: 500px;
@@ -89,6 +102,14 @@
   </style>
 </head>
 <body>
+  <!-- 추가 과제 : flex 내비게이션 -->
+  <nav class="nav-container">
+    <h1>Shoes Shop</h1>
+    <ul class="menu">
+      <li class="menu-item">products</li>
+      <li class="menu-item">services</li>
+    </ul>
+  </nav>
   <div class="main-background">
     <h4 class="main-title">Buy our excellent shoes!</h4>
     <p class="main-content">
