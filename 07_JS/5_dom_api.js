@@ -22,6 +22,7 @@ boxEl.addEventListener('click',function () {
   hasActive = boxEl.classList.contains('active'); 
   console.log(hasActive);
 });
+
 // 활용 예: active라는 클래스에 미리 스타일 지정하고 클릭한 특정 요소에 스타일을 적용할 때
 
 // (참고) 한 번 정도 슥 읽어볼 것!
