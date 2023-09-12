@@ -1,0 +1,153 @@
+<!-- '웹디자인 기능사' 자격시험 공개 문제로 웹 사이트 레이아웃 연습하기 -->
+<!-- 플러그인이나 라이브러리 사용 안됨, 순수 HTML + CSS + JS 로만 작성 -->
+<!-- 시중 교재에 주로 div + float를 사용, 우리 예제는 시멘틱 + flex로 다 바꿈 -->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dream Jeju</title>
+  <link rel="stylesheet" href="CSS/main.css">
+</head>
+<body>
+  <div id="container">
+    <header>
+      <div id="logo">
+        <a href="index.html">
+          <h1>Dream Jeju</h1>
+        </a>
+      </div>
+      <nav>
+        <ul id="topMenu">
+          <li>
+            <a href="#">단체 여행 <span>▼</span></a>
+            <ul>
+              <li><a href="#">회사 연수</a></li>
+              <li><a href="#">수학 여행</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">맞춤 여행 <span>▼</span></a>
+            <ul>
+              <li><a href="#">4.3 평화 기행</a></li>
+              <li><a href="#">곶자왈 체험</a></li>
+              <li><a href="#">힐링 워크샵</a></li>
+            </ul>
+          </li>
+          <li><a href="#">갤러리</a></li>
+          <li><a href="#">문의하기</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section id="slideShow">
+      <div id="slides">
+        <img src="images/photo-1.jpg" alt="slidel1">
+        <img src="images/photo-2.jpg" alt="slidel2">
+        <img src="images/photo-3.jpg" alt="slidel3">
+        <button type="button" id="prev">&lang;</button>
+        <button type="button" id="next">&rang;</button>
+      </div>
+    </section>
+
+    <section id="contents">
+      <div id="tabMenu">
+        <!-- 탭 메뉴 작성하기(w/라디오 버튼)
+          탭 메뉴는 js로 만드는 것이 일반적
+          여기서는 css만으로 간단히 구현
+          탭 버튼과 마찬가지로 라디오 버튼은 각각 1개만 선택하는 특성이 있는데 이것을 응용
+        -->
+        <input type="radio" name="tabs" id="tab1" checked>
+        <label for="tab1">공지사항</label>
+        <input type="radio" name="tabs" id="tab2" >
+        <label for="tab2">갤러리</label>
+
+        <div id="notice" class="tabContent">
+          <!-- 공지사항 내용 -->
+          <ul>
+            <li>사무실을 이전했습니다.</li>
+            <li>[참가 모집] 카약 체험에 초대합니다.</li>
+            <li>[참가 모집] 여름 방학 기간, 오름 체험단을 모집합니다.</li>
+            <li>겨울, 추천 여행지</li>
+            <li>가을, 추천 여행지</li>
+          </ul>
+        </div>
+        <div id="gallery" class="tabContent">
+          <!-- 갤러리 내용 -->
+          <ul>
+            <li><img src="images/img-1.jpg" alt="img1"></li>
+            <li><img src="images/img-2.jpg" alt="img2"></li>
+            <li><img src="images/img-3.jpg" alt="img3"></li>
+            <li><img src="images/img-1.jpg" alt="img1"></li>
+            <li><img src="images/img-2.jpg" alt="img2"></li>
+            <li><img src="images/img-3.jpg" alt="img3"></li>
+          </ul>
+        </div>
+      </div>
+      <div id="links">
+        <ul>
+          <li>
+            <a href="#">
+              <span id="quick-icon1"></span>
+              <p>평화기행</p>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span id="quick-icon2"></span>
+              <p>힐링 워크샵</p>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span id="quick-icon3"></span>
+              <p>문의하기</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <footer>
+      <div id="bottomMenu">
+        <ul>
+          <li><a href="#">회사 소개</a></li>
+          <li><a href="#">개인정보처리방침</a></li>
+          <li><a href="#">여행약관</a></li>
+          <li><a href="#">사이트맵</a></li>
+        </ul>
+        <div id="sns">
+          <ul>
+            <li>
+              <a href="#"><img src="images/sns-1.png" alt="sns1"></a>
+            </li>
+            <li>
+              <a href="#"><img src="images/sns-2.png" alt="sns2"></a>
+            </li>
+            <li>
+              <a href="#"><img src="images/sns-3.png" alt="sns3"></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="company">
+        <p>제주특별자치도 ***동 ***로 *** (대표전화) 123-456-7890</p>
+      </div>
+    </footer>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
+
+<!-- (정리) 레이아웃 구성, 정렬, 배치하는 기술
+  1. 가로 사이즈를 갖는 블록 요소 하나에 margin:0 auto;
+  2. position: absolute, fixed
+    2-1. 단순 위치 속성(top, left, right, bottom)으로 배치
+    2-2. 가로 또는 세로 사이즈 지정 + 위치 속성(top, bottom 또는 left, right를 0으로) + margin: auto;로 가운데 배치
+    2-3. left: 50%; + margin-left 또는 right: 50% + margin=right 로 가운데 배치
+  3. flexbox + justify-content, align-items 등
+  4. margin, padding로 여백을 줘서 콘텐츠 위치 조정
+-->
