@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    /* 미디어 쿼리: 다양한 유형 및 장치에 다른 스타일을 적용하는데 사용
+      @media 조건 {
+        조건에 맞을 때 적용할 스타일
+      }
+
+      반응형 웹(화면의 너비에 따라 스타일이 변하는 웹) 일 때는 조건에 screen 으로 시작
+    */
+    /* 
+      반응형 작업은 '기획자 > 디자이너 > 개발자' 순으로 넘어옴
+
+      실무에서 주로 하는 작업들
+      1) 1행 2열 수평 구조를 2행 1열의 수직 구조로 변경, 또는 중요하지 않은 정보는 과감히 생략
+      2) 게시판이나 리스트형 목록의 경우 중요하지 않은 컬럼을 생략, 이미지나 카드형 목록은 줄바꿈
+      3) 폰트 크기나 이미지 사이즈 등 콘텐츠의 크기를 모바일 화면에 맞춰서 작게 조정
+    */
+
+    body {
+      background-color: tan;
+      color: black;
+    }
+    /* (중요)
+      미디어 쿼리는 가장 밑에 작성(기존 스타일을 덮어써야 하므로)
+      앞에서 적용돈 스타일 값을 중복으로 넣을 필요 없음
+    */
+    /* 장치가 화면이고, 최대 너비가 992px 일 때( => 992px 이하) */
+    @media screen and (max-width: 992px) {
+      body {
+        background-color: blue;
+        color: white;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+    }
+
+        /* 장치가 화면이고, 최대 너비가 600px 일 때( => 600px 이하) */
+        @media screen and (max-width: 600px) {
+      body {
+        background-color: orange;
+        color: white;
+      }
+
+      h1 {
+        font-size: 16px;
+      }
+    }
+    /* 일반적인 중단점(분기점, Break Point) */
+    /* 
+      1. 5개 기준(매우 디테일)
+      ~ 479px : 모바일 세로
+      480px ~ 767px : 모바일 가로, 태블릿 세로
+      768px ~ 1023px : 태블릿 가로
+      1024px ~ 1279px : 노트북
+      1280px ~ : 데스크톱
+
+      2. 4개 기준(디테일)
+      ~ 479px : 모바일 세로
+      480px ~ 767px : 모바일 가로, 태블릿 세로
+      768px ~ 1023px : 태블릿 가로
+      1024px ~ : 데스크톱
+
+      3. 3개 기준(일반적, Good)
+      ~ 767px : 모바일
+      768px ~ 1023px : 태블릿
+      1024px ~ : 데스크톱
+
+      4. 2개 기준(일반적, Normal)
+      ~ 767px : 모바일
+      768px ~ : 태블릿, 데스크톱
+    */
+  </style>
+</head>
+<body>
+  <h1>Resize the browser window to see the effect!</h1>
+  <p>By default, the background color of the do
+    cument is "tan". If the screen size is 992px or less, the color
+    will change to "blue". If it is 60
+    0px or less, it will change to "olive".</p>
+</body>
+</html>

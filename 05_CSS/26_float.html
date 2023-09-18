@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    .container {
+      width: 800px;
+      margin: 0 auto;
+    }
+
+    .header {
+      width: 100%;
+      height: 50px;
+      background-color: aquamarine;
+    }
+
+    .left-menu {
+      width: 20%;
+      height: 400px;
+      background-color: cornflowerblue;
+
+      float: left;
+      /* 요소를 붕 띄워서 왼쪽으로 붙주세요 */
+      /* float로 띄웠기 때문에 .right 요소가 밑에 깔림 */
+    }
+
+    .content {
+      width: 80%;
+      height: 400px;
+      background-color: coral;
+
+      float: left;
+    }
+
+    .footer {
+      width: 100%;
+      height: 100px;
+      background-color: gray;
+
+      /* 문제 해결 방법1 - 
+        float 다음에 오는 요소에게 clear를 주면 이전 float 해제
+        값으로 left, right, both(둘 다 해제)
+      */
+      /* clear: both; */
+      
+      /* 문제 해결 방법2 - 부모 요소에 overflow: hidden; */
+    }
+    .section {
+      overflow: hidden;
+    }
+  </style>
+
+</head>
+<body>
+  <!-- float를 이용한 레이아웃 만들기 - 옛날 방식(지양) -->
+  <div class="container">
+    <div class="header"></div>
+    <div class="section">
+      <div class="left-menu"></div>
+      <div class="content"></div>
+    </div>
+    <div class="footer"></div>
+  </div>
+  
+  <br><br>
+
+  <h2>원래 float 용도로 사용하는 것은 ok</h2>
+  <img src="Https://placeholder.com/300x200" alt="sample" style="float: left;">
+  Lorem ipsum dolor sit, amet consectetur adipisicing elit. U
+  nde in fugit laboriosam nam. Repellendus culpa omnis nostru
+  m delectus pariatur facere quia recusan
+  dae, unde adipisci aut dicta aperiam. Nesciunt, mollitia iste.
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    .row {
+
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .column {
+      width: 25%;
+      padding: 20px;
+    }
+    @media screen and (max-width: 992px) {
+      .column {
+        width: 50%;
+      }
+    }
+    @media screen and (max-width: 600px) {
+      .column {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="row">
+    <div class="column" style="background-color: #aaa;">
+      <h4>Column 1</h4>
+      <p>text</p>
+    </div>
+    <div class="column" style="background-color: #bbb;">
+      <h4>Column 2</h4>
+      <p>text</p>
+    </div>
+    <div class="column" style="background-color: #ccc;">
+      <h4>Column 3</h4>
+      <p>text</p>
+    </div>
+    <div class="column" style="background-color: #ddd;">
+      <h4>Column 4</h4>
+      <p>text</p>
+    </div>
+  </div>
+</body>
+</html>

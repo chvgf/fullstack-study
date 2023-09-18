@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    .flex-container {
+      display: flex;
+      font-size: 30px;
+      text-align: center;
+    }
+
+    .flex-item-left {
+      width: 50%;
+      background-color: #f1f1f1;
+      padding: 10px;
+    }
+    .flex-item-right {
+      width: 50%;
+      background-color: dodgerblue;
+      padding: 10px;
+    }
+
+    .flex-item-first {
+      background-color: #f1f1f1;
+      padding: 10px;
+      flex: 1;
+    }
+    .flex-item-unimportant {
+      background-color: orange;
+      padding: 10px;
+      flex: 1;
+    }
+    .flex-item-last {
+      background-color: dodgerblue;
+      padding: 10px;
+      flex: 1;
+    }
+    /* 반응형 레이아웃 - 1열 레이아웃 만들기 */
+    @media screen and (max-width: 800px) {
+      .flex-container {
+        flex-direction: column;
+      }
+    .flex-item-left,
+    .flex-item-right {
+      width: 100%;
+    }
+    }
+    @media screen and (max-width: 600px) {
+      .flex-item-unimportant {
+        display: none;
+      }
+    }
+
+    /* Quiz */
+    /* 600px 이하에서 중요하지 않은 콘텐츠 숨기기 */
+    
+
+  </style>
+</head>
+<body>
+  <h1>Responsive Flexbox</h1>
+  <div class="flex-container">
+    <div class="flex-item-left">1</div>
+    <div class="flex-item-right">2</div>
+  </div>
+  
+  <br>
+  
+  <div class="flex-container">
+    <div class="flex-item-first">1</div>
+    <div class="flex-item-unimportant">2</div>
+    <div class="flex-item-last">3</div>
+  </div>
+  
+</body>
+</html>

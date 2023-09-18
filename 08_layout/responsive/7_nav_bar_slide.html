@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+
+  <style>
+    /* 전역 변수 설정 */
+    html,
+    :root {
+      --color-text: #f2f2f2;
+      --color-background: #044288;
+      --color-orange: #ff9959;
+    }
+
+    /* 공통스타일 */
+    * {
+      box-sizing: border-box;
+    }
+    a {
+      text-decoration: none;
+      color: white;
+    }
+    .btn {
+      width: 100px;
+      height: 40px;
+      border-color: var(--color-orange);
+      border-radius: 4px;
+      outline: none;
+      font-size: 1rem;
+      color: var(--color-orange);
+      background-color: transparent;
+      cursor: pointer;
+    }
+    .btn:hover {
+      color: var(--color-text);
+      background-color: var(--color-orange);
+    }
+    .material-icons {
+      font-size: inherit;
+      color: var(--color-orange);
+    }
+
+    header {
+      background-color: var(--color-background);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      position: relative;
+    }
+
+    header .logo {
+      font-size: 48px;
+      display: flex;
+      align-items: center;
+    }
+
+    header .nav__menu--main {
+      display: flex;
+    }
+    header .nav__menu--main li {
+      padding: 8px 12px;
+    }
+    header .nav__menu--main li:hover {
+      background-color: var(--color-orange);
+      border-radius: 4px;
+    }
+
+    header .btn-group .btn + .btn {
+      margin-left: 10px;
+    }
+
+    header .btn-hamburger {
+      position: absolute;
+      right: 32px;
+      font-size: 48px;
+      display: none;
+    }
+
+    header .m-nav {
+      width: 50%;
+      height: 100vh;
+      padding: 10px 20px;
+      background-color: var(--color-background);
+      position: fixed;
+      top: 0;
+      right: -50%;
+      transition: 0.5s;
+    }
+
+    header .m-nav div {
+      text-align: right;
+    }
+    header .m-nav .btn-close {
+      font-size: 48px;
+    }
+    
+    header .active {
+      right: 0;
+      display: block;
+      
+    }
+    /* 767px 이하에서
+      .nav, .btn-group은  숨기고, .btn-hamburger는 보이도록
+    */
+    @media screen and (max-width:767px) {
+      header .nav,
+      header .btn-group {
+        display: none;
+      }
+      header .btn-hamburger {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <span class="material-icons">logo_dev</span>
+      <a href="#">JW</a>
+    </div>
+
+    <nav class="nav">
+      <ul class="nav__menu--main">
+        <li><a href="#">메뉴1</a></li>
+        <li><a href="#">메뉴2</a></li>
+        <li><a href="#">메뉴3</a></li>
+        <li><a href="#">메뉴4</a></li>
+        <li><a href="#">메뉴5</a></li>
+      </ul>
+    </nav>
+
+    <div class="btn-group">
+      <button type="button" class="btn">Sign In</button>
+      <button type="button" class="btn">Sign Up</button>
+    </div>
+
+    <a href="#" class="btn-hamburger">
+      <span class="material-icons">menu</span>
+    </a>
+
+
+    <!-- 모바일용 슬라이드 메뉴 -->
+    <nav class="m-nav">
+      <div>
+        <a href="#" class="btn-close">
+          <span class="material-icons">close</span>
+        </a>
+      </div>
+      <ul class="nav__menu--main">
+        <li><a href="#">메뉴1</a></li>
+        <li><a href="#">메뉴2</a></li>
+        <li><a href="#">메뉴3</a></li>
+        <li><a href="#">메뉴4</a></li>
+        <li><a href="#">메뉴5</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <script>
+    // Quiz
+    // 햄버거 버튼을 클릭하면 .m-nav 요소에 'active'라는 클래스 값 추가 (in js)
+    // 닫기 버튼을 클릭하면 .m-nav 요소에 'active' 라는 클래스 값 제거 
+    // 'active'라는 클래스 값이 있으면 요소 보이기 (in css)
+    const navEl = document.querySelector('.btn-hamburger');
+    const aaEl = document.querySelector('.m-nav')
+    navEl.addEventListener('click', function () {
+      aaEl.classList.add('active')      
+    })
+    
+    const closeEl = document.querySelector('.btn-close')
+    // const aaaEl = document.querySelector('.m-nav')
+    closeEl.addEventListener('click', function () {
+      aaEl.classList.remove('active')
+    })
+  </script>
+</body>
+</html>

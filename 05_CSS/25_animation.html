@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+
+  <style>
+    #modal {
+      width: 300px;
+      height: 200px;
+      border: 1px solid lightgray;
+      border-radius: 6px;
+      background-color: whitesmoke;
+      padding: 20px;
+    }
+
+    /* CSS @keyframes Rule: 애니메이션 코드를 설정 */
+    /* keyframes-selector: 애니메이션 진행되는 과정을 선택해서 지정
+      0-100%
+      from (0%와 동일 )
+      to (100%와 동일)
+    */
+
+    .shake-normal {
+      animation: shake 0.4s;
+    }
+
+    @keyframes shake {
+      0% { transform: translate(1px, 11px) rotate(0deg); }
+      10% { transform: translate(-11px, -16px) rotate(-1deg); }
+      20% { transform: translate(-16px, 0px) rotate(1deg); }
+      30% { transform: translate(16px, 16px) rotate(0deg); }
+      40% { transform: translate(11px, -11px) rotate(1deg); }
+      50% { transform: translate(-11px, 16px) rotate(-1deg); }
+      60% { transform: translate(-16px, 11px) rotate(0deg); }
+      70% { transform: translate(16px, 11px) rotate(-1deg); }
+      80% { transform: translate(-11px, -11px) rotate(1deg); }
+      90% { transform: translate(11px, 16px) rotate(0deg); }
+      100% { transform: translate(11px, -16px) rotate(-1deg); }
+    }
+  </style>
+
+  <script>
+    function shakeModal() {
+      document.getElementById("modal").classList.add("shake-normal");
+      setTimeout(function () {
+        document.getElementById("modal").classList.remove("shake-normal");
+      }, 500); // 0.5초 뒤에 실행해라
+    }
+  </script>
+</head>
+<body>
+  <!-- Tip! animation 속성을 이용한 창 흔들이 -->
+  <h2>shake 효과 만들기</h2>
+  <div id="modal">
+    <label for="age">나이: </label>
+    <input type="text" id="age">
+    <button type="button" onclick="shakeModal()">ㅇㅇㅇㅇ</button>
+  </div>
+
+  <!-- Animate.css 라이브러리 -->
+  <h1 class="animate__animated animate__bounce">An animate element</h1>
+
+  <h1 class="animate__animated animate__bounce animate_delay-2s">An animate element</h1>
+
+  <h1 class="animate__animated animate__bounce animate_faster">An animate element</h1>
+
+  <h1 class="animate__animated animate__bounce animate_repeat-2">An animate element</h1>
+
+  <nav class="animate__animated animate__fadeInLeft">
+    <ul>
+      <li>메뉴1</li>
+      <li>2</li>
+      <li>2</li>
+      <li>3</li>
+    </ul>
+  </nav>
+</body>
+</html>
