@@ -955,3 +955,21 @@ footer .logo {
   z-index: 9;
   opacity: 0;
 }
+
+/* 반응형 실습 */
+@media screen and (max-width: 960px) {
+  .season-product .inner {
+    height: 700px;
+  }
+  .season-product .product {
+    margin: 0 auto;
+  }
+  .season-product .text-group {
+    top: 480px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
