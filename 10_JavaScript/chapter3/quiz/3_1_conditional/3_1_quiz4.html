@@ -19,9 +19,15 @@
     let msg = '놀이기구 이용 가능';
     
     // 풀이4-1
-    if (height > 150) {
-      document.write('놀이기구 이용 가능')
-      confirm('ㅇㅇ')
+    if (height >= 150) {
+      document.write(msg);
+    } else {
+      const a = confirm('부모님과 함께왔나요');
+      if (a) {
+        document.write('좋은 시간 보내렴');
+      } else {
+        document.write('어른 모시고 다시 오렴~');
+      }
     }
   </script>
 </head>

@@ -51,10 +51,159 @@
     }
 
     // 응용: 정상적인 값이 들어왔는지 판단
-    const userName = prompt('방문자의 이름은?', '')
-    if (userName) {
-      document.write(userName + '님 반갑습니다! 방문을 환영합니다!')
+    // const userName = prompt('방문자의 이름은?', '')
+    // if (userName) {
+    //   document.write(userName + '님 반갑습니다! 방문을 환영합니다!')
+    // }
+
+    // if ~ else문
+    // 조건식을 만족하면 if문 실행, 만족하지 않으면 else 문 실행
+    // 조건식의 결과에 따라 두가지 결과 중 하나를 실행시킬때 사용
+
+    // const num = prompt('숫자 입력', '0');
+    // if (num % 2 === 0) {
+    //   document.write('짝수입니다');
+    // } else {
+    //   document.write('홀수입니다');
+    // }
+    
+    // window.confirm('메세지'): 확인 상자는 사용자가 무언가를 확인하거나 수락하기를 원하는 경우에 사용
+    // 확인을 누르면 true, 취소를 누르면 false를 반환
+    // const result = confirm('회원 탈퇴를 하시겠습니까?')
+    // if (result) {
+    //   document.write('탈퇴 처리되었습니다!');
+    // } else {
+    //   document.write('탈퇴 취소되었습니다!');
+    // }
+
+    // if ~ else if 문
+    // 여러 if문 조건식 중 만족하는 것을 찾아 실행, 만족하는게 없으면 else문 실행
+    // 조건식의 결과에 따라 여러가지 결과 중 하나를 실행시킬 때 사용
+
+    // const month = Number(prompt('현재는 몇 월입니까?'));
+    // if (month >= 3 && month <= 5) { // 3~5
+    //   document.write('햇살가득 봄이네요!!');
+    // } else if (month >= 6 && month <= 8) { // 6~8
+    //   document.write('휴가 가기 좋은 여름이네요!!');
+    // } else if (month >= 9 && month <= 11) { // 9~11
+    //   document.write('독서의 계절 가을이네요!!');
+    // } else if (month === 12 || (month <= 2 && month > 0)) { //12, 1~2
+    //   document.write('눈이 오는 겨울이네요!!');
+    // } else { // 나머지
+    //   document.write('error');
+    // }
+
+    // 중첩 if문
+    // if (조건식1) {
+    //   if (조건식2) {
+    //     실행코드
+    //   }
+    //   실행코드
+    // }
+
+    // const id = 'jw';
+    // const pw = '1234';
+    // const userId = prompt('아이디는?');
+
+    // 아이디가 일치하지 않으면 굳이 비밀번호를 검사할 필요 없음
+    // if (id === userId) {
+    //   const userPw = prompt('비밀번호는?');
+
+    //   if (pw === userPw) {
+    //     document.write(userId + '님 반갑습니다.');
+    //   } else {
+    //     alert('비밀번호가 일치하지 않습니다.');
+    //   }
+    // } else {
+    //   alert('아이디가 일치하지 않습니다.');
+    // }
+
+    // 선택문
+    // 일치하는 경우의 값이 있을 경우 선택하여 실행 코드를 수행
+    // 일치하는 값이 없을 경우 default문(Optional) 실행
+
+    // switch문
+    // const 변수 = 값;
+    // switch (변수) {
+    //   case 값1:
+    //     코드1;
+    //     break;
+    //   case 값2:
+    //     코드2;
+    //     break;
+    //   case 값3:
+    //     코드3;
+    //     break;
+    //   default:
+    //     코드4;
+    //     break
+    // }
+
+    // const site = prompt('네이버, 다음, 구글 중 즐겨 쓰는 포털은?');
+    // let url;
+
+    // switch (site) {
+    //   case '네이버':
+    //     url = 'www.naver.com'
+    //     break;
+    //   case '다음':
+    //     url = 'www.daum.net'
+    //     break;
+    //   case '구글':
+    //     url = 'www.google.com'
+    //     break;
+    //   default:
+    //     alert('보기 중에 없는 사이트입니다.')
+    //     break;
+    // }
+
+    // if (url) location.href = 'https://' + url; // url 정보가 바뀌면서 이동됨
+    // 위와 같이 if문이 1줄이면 중괄호 생략 가능
+
+    // break문이 없을 때
+    // const time = 8; // 8 이상의 숫자를 넣어보며 테스트
+    // document.write('현재 시간: ' + time + '시', '<br>')
+
+    // switch (time) {
+    //   case 8:
+    //     document.write('출근합니다.', '<br>');
+    //   case 9:
+    //     document.write('회의를 합니다.', '<br>');
+    //   case 10:
+    //     document.write('업무를 봅니다.', '<br>');
+    //   default:
+    //     document.write('외근', '<br>');
+    // }
+
+    // 여러개의 case 묶기
+    // case문 갯수에 제한은 없음
+    const grade = 'c';
+    document.write('회원 등급:' + grade, '<br>');
+
+    switch (grade) {
+      case 'A':
+      case 'a':
+        // 'A'이거나 'a'둘 중 하나이면 실행
+    document.write('우수 회원입니다.', '<br>');
+        break;
+      case 'B':
+      case 'b':
+    document.write('일반 회원입니다.', '<br>');
+        break;
+      case 'C':
+      case 'c':
+    document.write('손님입니다.', '<br>');
+        break;
+      default:
+        break;
     }
+
+    // 정리: if문과 차이점
+    // 1) if문과 달리 case문에 비교 연산 못씀, 오직 일치 비교(===)만 가능
+    // 2) break; 가 없으면 밑에 코드까지 쭉 실행됨
+    // 3) 내부 동작이 다름
+    // 결론: 조건의 수가 많고 명확하게 값의 case가 나뉘는 경우 switch를 쓰면 코드가 더 깔끔해짐(가독성)
+    // 참고로 모든 switch문은 if문으로 바꿀 수 있으나 그 반대의 경우는 안됨
   </script>
 </head>
 <body>

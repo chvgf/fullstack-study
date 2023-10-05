@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    // 문제5
+    // 사용자로부터 세 개의 정수를 입력받아, 
+    // 그 수들의 최대값과 최소값, 합계와 평균을 구해서 브라우저에 출력하세요.
+
+    // 풀이5
+    const a = Number(prompt('a숫자를 입력하세요', '0'));
+    const b = Number(prompt('b숫자를 입력하세요', '0'));
+    const c = Number(prompt('b숫자를 입력하세요', '0'));
+
+    // 최대값
+    let max = a;
+    if (max < b) max = b;
+    if (max < c) max = c;
+    // max = Math.max(a, b, c);
+    // 최소값
+    let min = a;
+    if (min > b) max = b;
+    if (min > c) max = c;
+    // min = Math.min(a, b, c);
+    
+    const sum = a + b + c;
+    const avg = sum / 3;
+
+    document.write('최대값:' + max, '<br>')
+    document.write('최소값:' + min, '<br>')
+    document.write('합계:' + sum, '<br>')
+    document.write('평균:' + avg, '<br>')
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

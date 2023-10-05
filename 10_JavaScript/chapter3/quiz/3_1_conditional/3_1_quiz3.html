@@ -16,11 +16,15 @@
     // 풀이3
     const a = prompt('학년을 입력하세요', '')
     const score = prompt('점수 입력', '0')
-    if (a <= 3 && score >= 60) {
+    if (a <= 3 && (score >= 60 && score <= 100)) {
+      document.write('합격');
+    } else if (a > 3 && (score >= 70 && score <= 100)){
       document.write('합격')
-    } else if (a > 3 && score >= 70){
-      document.write('합격')
-    } else {
+      }
+      else if (score < 0 || score > 100){
+      alert('에러입니다');
+      }
+      else {
       document.write('불합격')
     };
   </script>

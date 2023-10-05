@@ -7,11 +7,19 @@
   <title>Document</title>
   <script>
     // 문제5
-    // 사용자로부터 세 개의 정수를 입력받아, 
-    // 그 수들의 최대값과 최소값, 합계와 평균을 구해서 브라우저에 출력하세요.
+    // while문을 이용하여 0부터 10미만의 정수 중에서 홀수만을 작은 수부터 출력하세요.
 
     // 풀이5
-    
+    let i = 0;
+    while (i < 10) {
+      i++;
+      if (i % 2 == 0) {
+        continue
+      }
+      document.write(i, '<br>')
+    }
+
+
   </script>
 </head>
 <body>
