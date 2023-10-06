@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    // 문제2
+    // 나 자신의 정보로 사람(person) 객체 만들기(리터럴 방식 이용)
+    // 속성 - name(문자형), age(숫자형), gender('남자' or '여자'), hobby(배열 [])
+    // 메소드 - speak(), walk(), eat() 등 이외에도 자유롭게 한가지 이상 작성
+    // (메소드 내 실행코드는 document.write()를 사용하여 간단한 출력문 작성)
+
+    // 객체 완성 후 모든 속성을 출력해보세요. (메소드의 경우 호출해보세요.)
+    // 단, 객체의 속성 값을 얻기 위해 점 표기법(.)과 대괄호 표기법([])을 골고루 사용해 볼 것!
+
+
+    // 풀이2
+    const jw = {
+      name: 'cjw',
+      age: 1,
+      gender: 'aaaa',
+      hobby :['aa', 'bb', 'cc'],
+      speak: function () {
+        document.write(jw.age + '살 ' + jw.name + ' 말 하는 중', '<br>')
+      },
+    }
+    document.write(jw.name, '<br>')
+    document.write(jw.age, '<br>')
+    document.write(jw['hobby'], '<br>')
+    jw.speak();
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

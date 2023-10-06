@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    // 문제2
+    // 요일 보여주기
+
+    // 특정 날짜 객체를 생성하면 'SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT' 형식으로 요일을 보여주도록 만들어보세요.
+    // 2가지 방법으로 각각 구현해 볼 것!
+    // 1) 조건문(if 또는 switch)을 이용한 방법
+    // 2) 배열을 이용한 방법
+
+    // 예시:
+    // let date = new Date(2023, 0, 5);  // 2023년 1월 5일
+    // "THU"가 출력되어야 합니다.
+    
+    
+    // 풀이2-1
+
+    let date = new Date(2023, 9, 8); // 'SUN'
+    document.write('요일:' + date.getDay(), '<br>');
+
+    let days;
+    switch (date.getDay()) {
+      case 0:
+        days = 'sun'
+        break;
+      case 1:
+        days = 'mon'
+        break;
+      case 2:
+        days = 'tue'
+        break;
+      case 3:
+        days = 'wed'
+        break;
+      case 4:
+        days = 'thu'
+        break;
+      case 5:
+        days = 'rie'
+        break;
+      case 6:
+        days = 'sat'
+        break;
+    }
+    document.write(days, '<br>', '<br>');
+
+    // 풀이2-2
+    let daysList = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+    document.write(daysList[date.getDay()])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // const someday = new Date(2023, 11, 25);
+    // const theYear = someday.getFullYear();
+    // const theMonth = someday.getMonth();
+    // const theDate = someday.getDate();
+    // const theDay = someday.getDay();
+    // document.write('<h1>특정 날짜 정보</h1>');
+    // document.write('특정 정보(기본 포맷): ' + someday, '<br>');
+    // document.write('특정 연도: ' + theYear, '<br>');
+    // document.write('특정 월: ' + theMonth, '<br>');
+    // document.write('특정 일: ' + theDate, '<br>');
+    // document.write('특정 요일: ' + theDay, '<br>');
+    // switch (theDay) {
+    //   case 0:
+    //     document.write('sun')
+    //     break;
+    //   case 1:
+    //     document.write('mon')
+    //     break;
+    //   case 2:
+    //     document.write('tue')
+    //     break;
+    //   case 3:
+    //     document.write('wed')
+    //     break;
+    //   case 4:
+    //     document.write('thu')
+    //     break;
+    //   case 5:
+    //     document.write('fri')
+    //     break;
+    //   case 6:
+    //     document.write('sat')
+    //     break;
+    // }
+  </script>
+</head>
+<body>
+  
+</body>
+</html>
