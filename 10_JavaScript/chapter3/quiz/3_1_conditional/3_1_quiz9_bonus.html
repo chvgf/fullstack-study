@@ -21,9 +21,29 @@
 
     const money = Number(prompt('돈을 넣어주세요.', '0'));
     let change = 0; // 거스름돈
+    let select = prompt('과자입력', '')
 
     // 풀이
-
+    if (money < 1300) {
+      const error = alert('error')
+      location.reload();
+    } else {
+      switch (select) {
+      case '허니버터':
+        document.write(select + (money - 1300));
+        break;
+      case '칸쵸':
+        document.write(select + (money - 1500));
+        break;
+      case '프링글스':
+        document.write(select + (money - 3000));
+        break;
+      default:
+        document.write('error')
+        location.reload();
+        break;
+    }
+    }
   </script>
 </head>
 <body>
