@@ -28,9 +28,15 @@
       console.log(fileInput); // input DOM 객체
       console.log(fileInput.files); // FileList 객체
       console.log(fileInput.files[0]); // File 객체
+      console.log(fileInput.files[0].name); 
 
-      // 여기에 풀기~
-      
+      const fileName = fileInput.files[0].name;
+      const fileExt = (fileName.substring(fileName.lastIndexOf('.') + 1)).toLowerCase();
+      console.log(fileExt);
+
+      if (!imgFileExt.includes(fileExt)) {
+        alert('이미지 파일이 아닙니다!');
+      } 
     });
 
 
