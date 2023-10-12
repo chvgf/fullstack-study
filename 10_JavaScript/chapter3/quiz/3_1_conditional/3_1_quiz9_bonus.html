@@ -23,11 +23,11 @@
     let change = 0; // 거스름돈
     
     // 풀이
-    if (money < 1300) {
+    if (money < 1300 || !(Number(money))) {
       alert('error')
       location.reload();
     } else {
-      let select = prompt('과자입력', '')
+      let select = prompt('과자입력(허니버터 1300, 칸쵸 1500, 프링글스 3000)', '')
       switch (select) {
       case '허니버터':
         document.write(select + ' 잔액' + (money - 1300));
@@ -47,7 +47,7 @@
         document.write(select + ' 잔액' + (money - 3000));
         break;
       default:
-        document.write('error')
+        alert('error')
         location.reload();
         break;
     }

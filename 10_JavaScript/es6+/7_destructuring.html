@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <script>
+    // 구조 분해 할당(비구조화 할당)
+    // 배열의 값 또는 객체의 속성을 풀어서 별개의 변수로 쓸 수 있게 해주는 자바스크립트 표현식
+
+    // 1. 객체 구조 분해 할당
+    // 객체의 속성 값을 변수에 할당하려면?
+    // ES5
+    var person1 = {
+      first: 'cheon',
+      last: 'jw'
+    };
+
+    var firstName = person1.first;
+    var lastName = person1.last;
+    console.log(firstName, lastName);
+    
+    // ES6
+    const person2 = {
+      first: 'cheon',
+      last: 'jw'
+    };
+    
+    const { first, last } = person2; // 주의: 변수명은 key값과 동일하게
+    console.log(first, last);
+    // 구조 분해 할당을 이용하여 person2가 가진 속성에 접근 + 해당 속성의 이름으로 변수 선언 및 값 할당 가능함
+    
+    // 중첩 구조 분해
+    // 중첩된 객체 형태로 주어진 경우에도 위와 동일하게 적용
+    const person3 = {
+      first: 'cheon',
+      last: 'jw',
+      links: {
+        soial: {
+          facebook: 'https://www.facebook.com/'
+        },
+        github: 'https://github.com/geoblo'
+      }
+    };
+    // const { facebook }= person3.links.soial;
+    // console.log(facebook);
+
+    // 변수의 이름과 객체의 속성 이름을 동일하게 지정하지 않고
+    // 변수명을 바꿔서 지정하고 싶다면 별칭 사용
+    const { facebook: fb }= person3.links.soial;
+    // person3.links.soial.facebook 속성을 찾아서 fb라는 변수에 할당함
+    console.log(fb);
+
+    // 기본값을 설정할 수도 있음
+    const { instagram: myinsta = 'https://www.instagram.com/' } = person3.links.soial;
+    console.log(myinsta);
+
+    // 객체 전체를 넘겨서 한번에 중첩 구조까지 분해 할당을 하려면..?
+    const movie = {
+      title: 'web Coding',
+      year: '2023',
+      person: {
+        director: 'jw',
+        actors: ['jwc', 'Alice', 'Peter']
+      }
+    };
+    // const { title, year } = movie;
+    // const { director, actors } = movie.person;
+    const { title, year, person: { director, actors } } = movie;
+    console.log(title, year, director, actors);
+
+    // 함수의 매개변수에서 구조 분해 할당 활용
+    function printMovieInfo({ title, year, person: { director, actors } }) {
+
+    }
+    printMovieInfo(movie);
+    
+    // 2. 배열 구조 분해 할당
+    // 배열을 구조 분해할 때는 객체와는 달리 {}가 아닌 []를 사용
+
+    // 배열의 값을 변수에 할당하려면..?
+    const person = ['jw', 'cheon', 25];
+
+    // ES5
+    var testName = person[0];
+    var testSurname = person[1];
+    var testAge = person[2];
+
+    // ES6
+    const [ name, surname, age ] = person;
+    console.log(name, surname, age);
+
+    // 생성하려는 변수의 수가 배열의 요소보다 적다면..?
+    const [name2, surname2] = person; // 25는 어디에도 할당되지 않음
+    console.log(name2, surname2);
+
+    // 배열의 나머지 모든 요소의 값을 얻고 싶다면..?
+    // ...rest(나머지) 연산자 사용
+    const food = ['pringles', 'banana', 'pizza', 'ice cream', 'cake']
+    const [snack, fruit, ...dessert] = food; // 레스트 연산자로 나머지 요소 전체를 얻음
+    console.log(dessert); // ['pizza', 'ice cream', 'cake']
+
+    // 3. 구조 분해를 이용하여 변수 교체하기
+    // 구조 분해 할당을 사용하면 변수의 값을 쉽게 서로 교체 가능
+    let hungry = 'yes';
+    let full = 'no';
+    // 식후에는 배고프지 않고 배부를 것이다. 값을 교체하자
+
+    [hungry, full] = [full, hungry]
+    console.log(hungry, full);
+
+    // 정리: 구조 분해 할당을 쓰는 이유
+    // 1) 객체 속성의 값(또는 배열의 값)을 변수에 할당할때 개수만큼 선언해야 되는데 구조 분해 할당은 할 줄로 줄일 수 있다
+    // 2) 함수에 값을 넘길때 인자값으로 객체를 넘기고 매개변수에서 구조 분해 할당을 사용하면 이점이 있다. => 3장으로 돌아가서 실습
+
+
+
+    // Quiz 
+    // 7.1 다음 작업을 수행하는 코드를 작성하자.
+    // 한 줄의 코드로 다음 배열의 각 값을 저장하는 변수를 선언하자.
+    const arr = ['one', 'two', 'three'];
+    // 여기에 코드를 작성하자.
+    const [a, aa, aaa] = arr;
+
+    // 예상결과
+    console.log(a); // one
+    console.log(aa); // two
+    console.log(aaa); // three
+
+    // 7.2 다음 작업을 수행하는 코드를 작성하자.
+    const user = {
+      nickname: 'Goni',
+      years: 30
+    };
+    const {nickname, years:ages, isAdmin = false } = user;
+    console.log(nickname, ages, isAdmin);
+    // 구조 분해 할당을 사용해 아래 미션을 수행해 보세요.
+    // nickname 프로퍼티의 값을 변수 nickname에 할당하세요.
+    // years 프로퍼티의 값을 변수 ages에 할당하세요.
+    // isAdmin 프로퍼티의 값을 변수 isAdmin에 할당하세요. isAdmin이라는 프로퍼티가 없으면 false를 할당하세요.
+
+    // 7.3 최대 급여 계산하기
+    // 급여 관련 정보가 저장된 salaries가 있다고 가정
+    const salaries = [
+      {
+        name: 'John',
+        salary: 100
+      },
+      {
+        name: 'Pete',
+        salary: 300
+      },
+      {
+        name: 'Mary',
+        salary: 250
+      },
+      {
+        name: 'jwwwwwc',
+        salary: 1000
+      }
+    ];
+
+    // 가장 많은 급여를 받는 사람의 이름을 반환해주는 함수 topSalary(salaries)를 만들어봅시다. 
+    // 조건은 아래와 같습니다.
+    // salaries가 비어있으면 함수는 null을 반환해야 합니다.
+    // 최대 급여를 받는 사람이 여러 명이라면 그 중 아무나 한 명 반환하면 됩니다.
+
+    function topSalary(salaryList) {
+      let max = 0;
+      let maxName = null;
+
+      for (const { name,salary } of salaryList) {
+        if (max < salary) {
+          max = salary;
+          maxName = name;
+        }
+      }
+      
+      // 여기에 코드 작성
+      // 힌트: for of 루프 + 객체 구조 분해 할당 사용
+
+      return maxName;
+    }
+
+    console.log(topSalary(salaries));
+    // 예상 결과: Pete
+
+
+
+
+
+
+
+
+console.log('mmmmmmmmmmmmmmmm');
+console.log('mmmmmmmmmmmmmmmm');
+console.log('mmmmmmmmmmmmmmmm');
+console.log('mmmmmmmmmmmmmmmm');
+
+    let people = [
+  {
+    name: 'Mike Smith',
+    family: {
+      mother: 'Jane Smith',
+      father: 'Harry Smith',
+      sister: 'Samantha Smith',
+    },
+    age: 35,
+  },
+  {
+    name: 'Tom Jones',
+    family: {
+      mother: 'Norah Jones',
+      father: 'Richard Jones',
+      brother: 'Howard Jones',
+    },
+    age: 25,
+  },
+];
+for (let {
+  name: n,
+  family: { father: f },
+} of people) {
+  console.log('Name: ' + n + ', Father: ' + f);
+}
+// "Name: Mike Smith, Father: Harry Smith" 
+// "Name: Tom Jones, Father: Richard Jones"
+
+
+
+
+
+</script>
+</head>
+<body>
+  
+</body>
+</html>
