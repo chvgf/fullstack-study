@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+</head>
+<body>
+  <!-- * -->
+  <h2>입력한 값보다 나이가 많은 사람 찾기</h2>
+  <input type="number" id="ageToCheck" value="30">
+  <button type="button" onclick="searchFunc()">검색</button>
+
+  <!-- ** -->
+  <div class="fruits">
+    <p>Apple</p>
+    <p>Banana</p>
+    <p>Orange</p>
+  </div>
+  <script>
+    // 유용한 배열 메소드(ES5)
+
+    // 1. map(function(crrentValue, index))
+    // 기존 배열의 요소를 이용하여 새로운 배열을 만듦
+    // 기존 배열의 각 요소에 대해 한 번씩 함수를 호출하고 반환하는 값으로 새로운 배열을 만듦
+    // 원래 배열을 변경하지 않음
+
+    // 배열의 모든 값에 10을 곱한 새 배열 만들기
+    const numbers = [65, 44, 12, 4]; 
+    // [650, 440, 120, 40]
+    const newnumbers = numbers.map((num) => {
+      return num * 10;
+    });
+    // const newnumbers = numbers.map(num => num * 10
+    // );
+    console.log(newnumbers);
+
+    // 각 사람의 전체 이름을 가진 새 배열 만들기
+    const persons = [
+      { fristName: 'jw', lastName: '1000' },
+      { fristName: 'Zero', lastName: 'cho' },
+      { fristName: 'Velopert', lastName: 'kim' }
+    ];
+    
+    // Quiz
+    // 예상결과: [jw100, zero cho, v~kim]
+
+    // for (const {fristName:f, lastName:l} of persons) {
+    //   console.log(persons.map(name => {
+    //     return f + l;
+    //   }));
+    // }
+
+    const newPersons = persons.map((item) => {
+      return `${item.fristName} ${item.lastName}`
+    });
+    console.log(newPersons);
+
+    // 2. filter(function(crrentValue, index))
+    // 제공된 테스트 함수를 통과하는 요소들만 따로 추출하여 새 배열을 만듦
+    // 테스트 함수에서는 true 또는 false를 반환해야 하며, 여기서 true를 반환하는 경우에만 새로운 배열에 포함됨
+    // 원래 배열을 변경하지 않음
+    
+    // ages 배열에서 19세 이상인 모든 값들고 새 배열을 만들어 변환
+    const ages = [32, 33, 16, 40];
+    // 예상 결과: [32,33,40]
+    // const newAges = ages.filter((age) => {
+    // return age >= 19;
+    // });
+    const newAges = ages.filter(age => age >= 19);
+    console.log(newAges);
+
+    // 활용Tip: 검색 기능(또는 필터링 기능) 또는 제거 기능 만들때 유용
+    // * 참조
+    const students = [
+      { name: 'a', age:18 },
+      { name: 'b', age:20 },
+      { name: 'c', age:24 },
+      { name: 'd', age:26 },
+      { name: 'e', age:30 }
+    ];
+
+    const searchFunc = () => {
+      const ageToCheckValue = document.querySelector('#ageToCheck').value;
+      // console.log(ageToCheckValue);
+      const serachstudents = students.filter((student) => {
+        return student.age > ageToCheckValue
+      })
+      console.log(serachstudents);
+    };
+
+    
+
+    // Quiz
+    // 배열의 filter() 함수를 사용하여 id 값이 2인 상품을 제거해보세요.
+    const products = [
+      { id: '1', title: 'snack', price: 1000 },
+      { id: '2', title: 'pen', price: 2000 },
+      { id: '3', title  : 'candy', price: 500 },
+      { id: '4', title: 'note', price: 1800 },
+      { id: '5', title: 'case', price: 2300 }
+    ];
+
+    const deleteFunc = () => {
+      const del = products.filter((prod) => {
+        return prod.id !== '2'
+      })
+      console.log(del);
+    };
+    deleteFunc();
+
+    // reduce(function(total, currentValue, index), initialValue)
+    // 배열의 각 요소를 순회하며 콜백함수의 실행 값을 누적하여 하나의 결과값을 반환
+    // 첫번째 콜백에는 이전 콜백의 반환 값이 없으므로 일반적으로 배열 인덱스 0 이 초기값으로 초기값으로 사용되며 반복은 배열 인덱스 1 부터 시작
+    // 초기값이 제공되면 이를 사용하며 반복은 배열 인덱스 0부터 시작됨
+    // 원래 배열을 변경하지 않음
+
+    // 배열의 모든 숫자에 반올림하여 총합 구하기
+    const floatNumbers = [15.5, 2.3, 1.1, 4.7];
+    const sum = floatNumbers.reduce((total, num) => {
+      return total + Math.round(num); // 0 + 16 + 2 + 1 + 5
+    }, 0);
+    console.log(sum);
+    // 사용 예: 장바구니 기능에서 총 금액 구할 때
+
+
+    //  새로운 배열 메소드(ES6)
+    
+    // 1. Array.from(object)
+    // 배열스러운, 즉 배열처럼 보이지만 배열이 아닌 객체를 받아서 실제 배열로 변환해 반환
+    // 변환할 수 없으면 빈 배열을 반환
+    // 적용 가능한 예: 인덱스와 길이 속성(length)이 있는 객체나 반복 가능한 객체
+
+    // 1) 문자열에서 배열 만들기
+    const strArray = Array.from('ABCDEFG')
+    console.log(strArray);
+
+    // 2-1) NodeList에서 배열 만들기
+    // ** 참조
+    const fruits = document.querySelectorAll('.fruits p');
+    console.log(fruits); // NodeList 객체
+
+    // fruits를 실제 배열로 변환
+    const fruitArray = Array.from(fruits);
+    console.log(fruitArray);
+
+    // 변환 후 map() 사용 가능
+    // p태그의 텍스트 내용을 가져와서 새로운 배열로 만들기
+    const fristNames = fruitArray.map((fruit) => {
+      return fruit.textContent;
+    });
+    console.log(fristNames);
+
+    // 2-2) Array.from(object, mapFunction) 이용
+    const fristNames2 = Array.from(fruits,(fruit) => {
+      return fruit.textContent });
+      console.log(fristNames2);
+
+    // 3) FileList에서 배열 만들기
+    // 4_2_4_quiz5.html 에서 실습
+
+    // 2. Array.of(가변 인자)
+    // 전달받은 모든 인자값으로 배열을 생성
+    const digits = Array.of(1, 2, 3, 4, 5);
+    console.log(digits);
+
+    // 3. finde(function(currentValue, index))
+    // 제공된 테스트 함수를 충족하는 배열의 첫번째 요소를 반환
+    // 충족하는 요소가 없으면 undefined를 반환
+    // 원래 배열을 변경하지 않음
+
+    // 배열의 요소 중 3보다 큰 첫번째 요소를 반환
+    const array = [1, 2, 3, 4, 5];
+    const found = array.find((e) => {
+      return e > 3;
+    });
+    console.log(found);
+    console.log(array.find((e) => { e > 10 })); // 없으면 undefined
+
+    // 사용 예: 배열에서 고유한 값(예: id값)으로 특정 요소를 찾을 때 유용
+    const foundProduct = products.find((product) => {
+      return product.id === '3'
+    })
+    console.log(foundProduct);
+
+    // 4. findIndex(function(currentValue, index))
+    // 제공된 테스트 함수를 충족하는 배열의 첫번째 요소의 익덱스를 반환
+    // 충족하는 요소가 없으면 -1을 반환
+    // 원래 배열을 변경하지 않음
+    const greetings = ['hello', 'hi', 'byebye', 'goodbye', 'hi'];
+
+    const foundIndex = greetings.findIndex((e) => {
+      return e === 'hi';
+    });
+    console.log(foundIndex);
+    console.log(greetings.findIndex((e) => { e === 'hey' })); // 없으면 -1
+
+    // 5. some()과 every()
+    // some()은 조건과 일치하는 요소가 있는지 검색하고 첫번째 일치하는 요소를 찾으면 바로 중지
+    // every()는 모든 요소가 주어진 조건과 일치하는지 여부를 확인
+    // 원래 배열을 변경하지 않음
+    const numArray = [1, 2, 3, 4, 5, 6, 1, 2, 3, 1];
+
+    const arraySome = numArray.some((e) => e > 2); // 일부, 인덱스 2에서 중지
+    console.log(arraySome);
+
+    const arrayEvery = numArray.every((e) => e > 2); // 모든
+    console.log(arrayEvery);
+    console.log(numArray.every(e => e >=1));
+
+
+
+    // Quiz 
+    // 8.1 다음 작업을 수행하는 코드를 작성하자.
+    // 다음과 같은 코드에서, 문자열의 각 문자가 배열의 각 원소가 되도록 새 배열을 생성하자.
+    const apple = 'Apple';
+    
+    
+    const a = Array.from(apple)
+    console.log(a);
+    // const myArr = // 여기에 코드를 추가하자.
+    // console.log(myArr);
+    // 예상 결과: ['A', 'p', 'p', 'l', 'e']
+
+    // 8.2 다음 코드의 올바른 출력은?
+    let numberArray = [1, 2, 3, 4, 5];
+    const foundNumber = numberArray.find(e => e > 3);
+
+    console.log(foundNumber);
+
+    // 1) 3
+    // 2) 5
+    // 3) 4,5
+    // 4) 4 ooooo
+
+    // 8.3 다음 코드의 올바른 출력은?
+    numberArray = [1, 2, 3, 4, 5, 6, 1, 2, 3, 1];
+    const result = numberArray.some(e => e > 2);
+
+    console.log(result);
+    // 1) 2
+    // 2) false
+    // 3) 3
+    // 4) true ooooo
+
+    // 8.4 다음 코드의 올바른 출력은?
+    Array.from([1, 2, 3], x => x * x);
+
+    // 1) [1, 2, 3]
+    // 2) [1, 4, 9] ooooo
+    // 3) [1, 3, 5]
+
+    // 8.5 다음 코드의 올바른 출력은?
+    numberArray = [1, 3, 5, 7, 9, 11];
+
+    numberArray.includes(5, 4);
+
+    // 1) 4
+    // 2) true 
+    // 3) 5
+    // 4) false ooooo
+    </script>
+  
+</body>
+</html>

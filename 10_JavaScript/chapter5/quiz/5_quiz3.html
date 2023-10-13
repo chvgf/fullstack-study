@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    // 문제3
+    // 일초 간격으로 숫자 출력하기
+    // from에 명시한 숫자부터 to에 명시한 숫자까지 출력해주는 함수 printNumbers(from, to)를 만들어보세요.
+    // (from 값이 to 값보다 작은 수가 입력된다고 가정하고 풀 것!)
+    // 숫자는 1초 간격으로 출력되어야 합니다.
+    // 힌트: setInterval(), clearInterval()을 이용
+
+
+    // 풀이3
+    // function printNumbers(from, to) {
+    //   for (let i = from; i <= to; i++) {
+    //     if (from < to) {
+    //       let a = from
+    //       document.write(setInterval(a, 1000))
+    //     }
+    //   }
+    // }
+
+    // printNumbers(10, 30);
+
+
+    
+    // 한글로 플로우 차트를 작성
+    // 1) 함수 printNumbers (from, to)를 선언하기
+    // 2) 1초 간격으로(setInterval(함수, 1000)) from 값 출력시키기
+    // 3) 출력되는 숫자를 1씩 증가시키기(++)
+    // 4) to 값 까지만 출력하고 멈추기(clearInterval())
+
+    function printNumbers(from, to) {
+      const timerId = setInterval(function () {
+        document.write(from)
+        from++
+        if (from > to) {
+        clearInterval(timerId);
+      } 
+      }, 1000);
+    }
+
+    printNumbers(1,4)
+
+
+
+
+
+
+
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

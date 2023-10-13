@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <script>
+    // 1. ... 스프레드(spread, 펼치다[펴다]) 연산자
+    // 스프레드 문법을 사용하면
+    // (배열의 경우) 요소가 예상되는 위치 또는 (함수 호출의 경우) 인자값을 넣는 위치에서
+    // 배열 또는 문자열과 같은 반복 가능 항목을 확장할 수 있습니다.
+    // (객체의 경우) 객체의 속성을 열거하고 생성 중인 객체에 키-값 쌍을 추가합니다.
+
+    // 결론: 객체의 요소를 펼친다.
+
+    // 1) 배열의 결합
+    const veggie = ['토마토', '오이', '콩'];
+    const meat = ['돼지고기', '소고기', '닭고기'];
+    
+    const menu = [...veggie, '파스타', ...meat];
+    console.log(menu);
+
+    // 2) 배열의 복사
+    // 스프레드 문법으로 배열의 복사본을 생성할 때 매우 유용
+    const newVeggie = veggie;
+    
+    newVeggie.push('완두콩');
+    console.log(newVeggie);
+    console.log(veggie); // 원본까지 같이 변경됨
+    // 그 이유는 실제로 복사본을 만든 것이 아니라, 새 배열은 단순히 이전 배열을 참조하기 때문
+
+    // ES5에서 일반적으로 배열의 복사본을 만드는 방법
+    const originVeggie = ['토마토', '오이', '콩'];
+    const copyVeggie = [].concat(originVeggie)
+    copyVeggie.push('완두콩');
+    console.log(copyVeggie);
+    console.log(originVeggie); // 원본은 변경 안됨
+
+    // ES6에서 스프레드 문법으로 배열의 복사본을 만드는 방법
+    const copyVeggieES6 = [...originVeggie]; // originVeggie의 모든 요소를 펼쳐서 넣음
+    copyVeggieES6.push('완두콩ES6');
+    console.log(copyVeggieES6);
+    console.log(originVeggie);
+
+    // 3) 함수와 스프레드 연산자
+    // 인자값들을 요소로 가지는 배열에 스프레드 연산자를 사용하면 함수를 쉽게 호출 가능
+    function doStuff(x, y, z) {
+      console.log(x + y + z);
+    }
+    const args = [0, 1, 2];
+
+    // doStuff(args); // 매개변수 x에 args 배열이 할당됨, y와 z는 undefined
+    doStuff(...args);
+
+    // 다른 예
+    const name = ['jw', 'cheon'];
+
+    function greet(first, last) {
+      console.log(`Hello ${first} ${last}`);
+    }
+    greet(...name);
+
+    // 지정된 매개변수보다 더 많은 값을 제공하면..?
+    const otherName = ['jw', 'cheon', '1000jw']
+    greet(...otherName);
+
+    // (활용) 최대값 구하기
+    const number = [1, 2, 3, 4, 5, 11];
+    console.log(Math.max(...number));
+
+    // 4) 객체 리터럴과 스프레드(ES2018부터 객체에도 적용됨)
+    // 4-1) 객체의 복사
+    const person = {
+      name: 'jw',
+      surname: 'cheon',
+      age: 28
+    };
+    const clone = {
+      ...person
+    }
+    console.log(clone);
+
+    clone.age = 15;
+    console.log(clone);
+    console.log(person);
+
+    // 4-2) 객체의 결합
+    const teacher = {
+      name: 'jh kim',
+      age: 30
+  }
+
+  // 기본 객체에 새로운 속성을 추가하여 새로운 객체 정의
+  const classInfo1 = {
+    ...teacher,
+    subject: 'web FullStack'
+  };
+  console.log(classInfo1);
+
+  const classInfo2 = {
+    ...classInfo1,
+    day: 'weekday'
+  };
+  console.log(classInfo2);
+  
+  </script>
+</head>
+<body>
+  
+</body>
+</html>
