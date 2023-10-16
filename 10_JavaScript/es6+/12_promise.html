@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <script>
+    // 2-1. 프로미스
+    // "결과를 약속합니다!"
+    // 예: (네트워크 요청 같은 시간이 걸리는 로직을 통해) 데이터를 받아오면 그 때 네가 then()에 등록한 콜백 함수를 실행할 것을 약속할게
+    // 비동기를 간편하게 처리할 수 있도록 도와주는 객체이다.(콜백을 대체하여 비동기 처리 표준으로 쓰임)
+    // - 기능을 수행하고 나서 정상적으로 완료됐다면 처리된 결과값을 전달
+    // - 문제가 발생하면 에러를 전달해줌
+
+    // 프로미스의 3가지 개념
+    // 1) PromiseState - 프로미스의 상태. 기능을 수행중인지, 완료됐는지(완료됐다면 성공인지 실패인지)에 대한 상태
+    // pending(프로미스가 만들어져서 기능을 수행중 일 때) 
+    //   -> 성공 시 resolve() 호출 -> fulfilled(성공적으로 다 끝냈을 때)
+    //   -> 실패 시 reject() 호출 -> rejected(오류가 발생했을 때)
+
+    // 2) PromiseResult - 프로미스 상태에 따른 결과
+    // "상태" -> 결과
+    // "pending" -> undefined
+    // "fulfilled" -> 우리가 넘긴 결과값
+    // "rejected" -> 일반적으로 Error 객체
+
+    // 3) Producing code - 기능을 수행한 후 해당하는 데이터를 만들어내는 코드(시간이 걸릴 수 있는 코드)
+    //    Consuming code - 받은 데이터를 소비하는 코드(결과를 기다려야 하는 코드)
+    
+    // 정리: 프로미스는 "Producing code"와 "Consuming code"를 연결하고 최종 성공 또는 실패를 나타내는 객체
+
+    // 프로미스 객체 만들기
+    // 변수 = new Promise(콜백 함수(resolve, reject));
+    // resolve(): 기능을 정상적으로 수행해서 최종 데이터를 전달하는 콜백 함수
+    // reject(): 기능 수행 중 문제가 생기면 호출하괴 될 콜백 함수
+  
+    // 프로미스 예제1
+    const myPromise = new Promise((resolve, reject) => {
+      // producing code 영역
+      // 비동기적으로 수행하고 싶은 코드를 여기에 작성
+      console.log('네크워크 요청 작업을 수행중...');
+
+      const resultFlag = true; // 테스트를 위해 기능 수행 결과를 임의로 만듦
+
+      setTimeout(() => {
+        // 성공 시 resolve(), 실패 시 reject() 두 콜백 중 하나를 호출해야 함
+        if (resultFlag) {
+          resolve('기능 수행 후 얻은 데이터'); // 성공적으로 결과를 가져왔다면 resolve()를 호출
+        } else {
+          reject(new Error('에러 발생!!')); // 실패했다면 reject() 호출
+        }
+      }, 2000);
+    });
+
+    // Consuming code 영역
+    // 참고로 2초가 지난 후 호출됨(즉, 결과를 기다림)
+    myPromise
+      .then((data) => { // 위에서 만든 프로미스가 정상적으로 잘 수행이 된다면(성공 시) then(그러면) data*를 받아와서 처리
+        console.log(data);
+      })
+      .catch((err) => { // 위에서 만든 프로미스가 문제가 발생한다면 (실패 시) err**를 잡아서 처리
+        console.error(err);
+      })
+      .finally(() => { // 성공/실패와 상관없이 무조건 실행
+        console.log('마지막에 무조건 실행');
+      });
+
+    // 프로미스 확인용 로그
+    // console.log(myPromise);
+    // setTimeout(() => {
+    //   console.log(myPromise);
+    // },2000);
+
+    // 정리:
+    // 프로미스가 성공할 때의 값을 얻는 데 .then()을 사용
+    // 프로미스가 실패할 때의 오류를 처리하는데 .catch()를 사용
+
+    // 프로미스 예제2
+    // fetch()를 사용한 JSONPlaceholder API 사용
+    // fetch()는 서버에서 결과 데이터를 가져오는 프로세스를 시작하고 그 결과로 프로미스를 반환
+    // 성공 시 resolve(Response 객체);
+
+    // fetch() 사용의 기본 형태
+    // 변수 = fetch(url, [options]);
+    // url: 접근하고자 하는 URL
+    // options: (선택적) method나 header 등을 지정할 수 있음
+    fetch('https://jsonplaceholder.typicode.com/posts')
+      .then((res) => {
+        console.log(res); // Response 객체
+        return res.json(); // Response 객체의 json() 메소드: 응답을 분석해서 JSON 객체로 변경함
+      })
+      .then((data) => {
+        console.log(data);
+      });
+
+    // // 기본적으로 아래 형태로 씀
+    // fetch('api-url')
+    //   .then(res => {
+    //     return res.json();
+    //   })
+    //   .then(data => {
+    //     // data를 받아서 처리
+    //   });
+
+    // (참고)
+    // JSON 이란?
+    // JavaScript Object Notation: 자바스크립트 객체 표기법
+    // 자바스크립트 객체에서 영감을 받아 만들어진 표기법
+    // 데이터를 저장하고 전송하기 위한 텍스트 포맷
+    // Object { key: value }
+    // JSON { key: value }
+    
+    // JSON의 특징
+    // 심플하고 가벼운 데이터 형식
+    // 자바스크립트 객체 표기법으로 작성된 일반 텍스트 - 큰 따옴표 규격 사용
+    // 데이터를 서버와 주고 받을 때 사용
+    // 개발 언어와 독립적*
+    // *JSON 구문은 자바스크립트 객체에서 파생됐지만 JSON 형식은 텍스트임, 여러 개발 언어에서 사용중!
+
+    // 간단한 JSON 연습
+    const user = {
+      name: 'goni',
+      age: 33
+    };
+    console.log(user);
+
+    const jsonUser = JSON.stringify(user); // Object to JSON
+    console.log(jsonUser);
+
+    const objUser = JSON.parse(jsonUser); // JSON to Object
+    console.log(objUser);
+
+    // 2-2. 프로미스 체이닝
+    // 프로미스의 성공 또는 실패 여부와 무관하게
+    // 이전 프로미스에서 반환된 것을 사용하여 프로미스를 계속 체이닝(연결)할 수 있다.
+    // 콜백 지옥보다 가독성이 좋고 간결
+
+    // 프로미스 체이닝 예1
+    const myPromiseChain = new Promise((resolve, reject) => {
+      resolve();
+    });
+
+    myPromiseChain
+      .then((data) => {
+        console.log(data);
+        // 새로운 값을 반환
+        return 'working...';
+      })
+      .then((data) => {
+        // 이전 프로미스에서 받은 값을 출력
+        console.log(data);
+        // throw 'falied!'; // 에러를 던짐!
+        throw new Error('failed!'); // 에러 객체를 만들어 던짐
+      })
+      .catch((err) => {
+        // 프로미스 수행 중 발샐한 오류를 받아서 출력
+        console.log(err);
+      });
+
+    // 프로미스 체이닝 예2
+    // 콜백 지옥 예제2를 프로미스로 리펙터링 하기
+    const loginUser = (id, password) => {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          if(id === 'goni' && password ==='1234') {
+            // 로그인과 관련된 작업을 하고 서버에서 받아온 유저 정보(여기서는 그냥 id)를 콜백 함수에 전달함
+            resolve(id);
+          } else {
+            reject(new Error('존재하지 않음'));
+          }
+        }, 2000);
+      });
+    };
+
+    const getRoles = (userId) => {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          if (userId === 'goni') {
+            // 권한을 거져오는 작업을 하고 받아온 권한 정보를 콜백 함수에 전달함
+            resolve({ name: 'JH KIM', role: 'admin'});
+          } else {
+            reject(new Error('접근 권한 없음'));
+          }
+        }, 1000);
+      })
+    };
+    
+
+
+    const id = prompt('아이디?');
+    const password = prompt('비밀번호?');
+// 프로미스체인
+    loginUser(id, password)
+      .then((userId) => { // 로그인이 성공하면 그러면
+        return getRoles(userId); // userId값을 통해 권한 정보를 얻는 getRoles() 호출
+      })
+      .then((userInfo) => { // 권한 정보를 얻어오면 그러면
+        alert(`welcome ${userInfo.name} (${userInfo.role})`);
+      })
+      .catch((err) => { // 에러 핸들링
+        console.error(err);
+      });
+  </script>
+</head>
+<body>
+
+</body>
+</html>
