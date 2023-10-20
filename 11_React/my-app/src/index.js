@@ -22,6 +22,17 @@ import LoginControl from './chapter9/9.2/LoginControl';
 import LoginControlRefactoring from './chapter9/9.3/LoginControlRefactoring';
 import Mailbox from './chapter9/9.3/Mailbox';
 import MainPage from './chapter9/9.4/MainPage';
+import LandingPage from './chapter9/LandingPage';
+import NumberList from './chapter10/10.1/NumberList';
+import ListKey from './chapter10/10.2/ListKey';
+import AttendanceBook from './chapter10/AttendanceBook';
+import NameForm from './chapter11/11.2/NameForm';
+import EssayForm from './chapter11/11.3/EssayForm';
+import FlavorForm from './chapter11/11.3/FlavorForm';
+import TextInputWithFocusButton from './chapter7/7.6/TextInputWithFocusButton';
+import FileInput from './chapter11/11.3/FileInput';
+import ReserVation from './chapter11/11.4/ReserVation';
+import SignUp from './chapter11/SignUp';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -65,6 +76,7 @@ root.render(
   // 7장 예제
   // <Counter />
   // <SetStateMerge />
+  // <TextInputWithFocusButton />
 
   // 8장 예제
   // 8.1
@@ -80,7 +92,21 @@ root.render(
   // <LoginControl/>
   // <LoginControlRefactoring/>
   // <Mailbox unreadMessages={messages} />
-  <MainPage />
+  // <MainPage />
+  // <LandingPage />
+
+  // 10장 예제
+  // <NumberList />
+  // <ListKey />
+  // <AttendanceBook />
+
+  // 11장 예제
+  // <NameForm />
+  // <EssayForm />
+  // <FlavorForm />
+  // <FileInput />
+  // <ReserVation />
+  <SignUp />
 );
 
 // If you want to start measuring performance in your app, pass a function
