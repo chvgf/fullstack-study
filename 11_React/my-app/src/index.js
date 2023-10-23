@@ -33,6 +33,7 @@ import TextInputWithFocusButton from './chapter7/7.6/TextInputWithFocusButton';
 import FileInput from './chapter11/11.3/FileInput';
 import ReserVation from './chapter11/11.4/ReserVation';
 import SignUp from './chapter11/SignUp';
+import ReserVationRefactoring from './chapter11/11.4/ReserVationRefactoring';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -107,6 +108,7 @@ root.render(
   // <FileInput />
   // <ReserVation />
   <SignUp />
+  // <ReserVationRefactoring />
 );
 
 // If you want to start measuring performance in your app, pass a function

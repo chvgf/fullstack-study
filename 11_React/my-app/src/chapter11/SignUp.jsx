@@ -20,14 +20,33 @@ import { useState } from "react";
 // 2) 각각의 state를 여러 개 만들어도 되고 객체 형태로 한번에 관리해도 됨
 
 function SignUp() {
-  const [name, setName] = useState('');
-  const [gender, setGender] = useState('남자');
+  // const [name, setName] = useState('');
+  // const [gender, setGender] = useState('남자');
+  // 객체 형태로 관리
+  const [inputs, setInputs] = useState({
+    name: '',
+    gender: '남자'
+  });
+  const { name, gender } = inputs;
 
-  const handleNameChange = (e) => {
-    setName(e.target.value);
-  };
-  const handleGenderChange = (e) => {
-    setGender(e.target.value);
+
+
+  // const handleNameChange = (e) => {
+  //   setName(e.target.value);
+  // };
+  // const handleGenderChange = (e) => {
+  //   setGender(e.target.value);
+  // };
+  const handleA = (e) => {
+    const {name, value} = e.target;
+    console.log(name, value);
+
+    // 방법1
+    const copyA = {
+      ...inputs
+    };
+    copyA[name] = value;
+    setInputs(copyA)
   };
   
   
@@ -41,8 +60,9 @@ function SignUp() {
       <label>이름:
         <input 
         type="text" 
+        name="name"
         value={name}
-        onChange={handleNameChange}
+        onChange={handleA}
         />
       </label>
 
@@ -50,8 +70,10 @@ function SignUp() {
       
     <label>성별: 
       <select
-      onChange={handleGenderChange}
-      value={gender}>
+      onChange={handleA}
+      value={gender}
+      name="gender"
+      >
         <option 
         value='남자'
         >남자

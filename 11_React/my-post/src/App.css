@@ -1,0 +1,36 @@
+.header--dark {
+  width: 100%;
+  background-color: #1c1c1c;
+  color: #fff;
+  display: flex;
+  padding: 0 20px;
+}
+
+.inner {
+  padding: 0 20px;
+}
+
+.list {
+  margin: 20px 0;
+  padding: 0 10px 10px;
+  border: 1px solid gray;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.list:hover {
+  background-color: #eaeaea;
+}
+
+.detail { 
+  margin-top: 20px;
+  padding: 10px 20px 20px;
+  background-color: #bbbbbb;
+  border-radius: 6px;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
