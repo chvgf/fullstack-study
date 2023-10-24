@@ -13,14 +13,18 @@ function App() {
   const [posts, setPosts] = useState([
     {
       title: '리액트 잘 쓰려면?',
-      date: new Date()},
+      date: new Date(),
+      writer: 'jw.cheon'
+    },
     {
       title: '자바스크립트 핵심 문법',
-      date: new Date()
+      date: new Date(),
+      writer: 'JW.CHEON'
     },
     {
       title:'스타일링 가이드',
-      date: new Date
+      date: new Date(),
+      writer: 'goni.kim'
   }]);
   const [showPostDetail, setShowPostDetail] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -67,9 +71,9 @@ function App() {
                 setCurrentIndex(index);
               }}
             >
-              <h4>{post.title}</h4>
-              <p>{post.date.toUTCString()}</p>
-              <p>by goni.kim</p>
+              <h4>제목: {post.title}</h4>
+              <p>날짜: {post.date.toUTCString()}</p>
+              <p>작성자: {post.writer}</p>
 
               <hr />
 
@@ -132,7 +136,7 @@ function App() {
         // copyPosts.unshift(inputValue);
 
         // 또는
-        const copyPosts = [{title:inputValue, date:new Date()}, ...posts];
+        const copyPosts = [{title:inputValue, date:new Date() }, ...posts];
         setPosts(copyPosts);
         setInputValue('');
 

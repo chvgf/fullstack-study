@@ -6,8 +6,8 @@ function PostDetail(props) {
   return (
     <div className='detail'>
       <h4>제목: {posts[currentIndex]}</h4>
-      <p>날짜: 2023년 1월 20일</p>
-      <p>작성자: goni.kim</p>
+      <p>{props.posts.date}</p>
+      <p>{props.posts.write}</p>
       <p>... 상세 내용 ...</p>
 
       {/* 간단한 포스트 수정하기 */}
