@@ -128,7 +128,7 @@ function App() {
     <>
       {/* <Reset /> */} {/* 리셋 css 방법1 */}
       <GlobalStyle /> {/* 리셋 css 방법2 */}
-      
+
       <TodoTemplate>
         <TodoInsert onInsert={handleInsert} />
         <TodoList todos={todos} onRemove={handleRemove} onToggle={handleToggle} />
