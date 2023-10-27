@@ -68,7 +68,7 @@ function TodoInsert(props) {
     <TodoInsertWrapper onSubmit={handleSubmit}>
       <StyledInput
         value={value}
-        onChange={handleChange} z
+        onChange={handleChange}
         type='text'
         placeholder='할 일을 입력하세요.'
       />
