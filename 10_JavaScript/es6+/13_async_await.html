@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,13 +37,13 @@
 
     // 비동기 함수를 만들기 위해 함수 앞에 async 키워드 붙이면 프로미스 객체를 만들지 않아도 자동으로 프로미스로 반환됨
     async function fetchData2() { // 비동기 함수 선언
-        // 네트워크 요청을 통해 시간이 걸리는 작업...
-        return '네가 원하는 데이터';
-      };
+      // 네트워크 요청을 통해 시간이 걸리는 작업...
+      return '네가 원하는 데이터';
+    };
 
-      fetchData2().then(res => {
-        console.log(res);
-      });
+    fetchData2().then(res => {
+      console.log(res);
+    });
 
     // 3-1. 프로미스를 사용한 방식과 async/await로 리팩터링 하기
     // 예제1
@@ -115,7 +116,7 @@
     // 예제2 async/await로 리팩터링
     // Quiz
 
-    const gitgit = async function(username) {
+    const gitgit = async function (username) {
       try {
         const res = await fetch(`https://api.github.com/users/${username}`);
         const userInfo = await res.json();
@@ -123,9 +124,9 @@
       } catch (err) {
         console.error(err);
       }
-      
+
     };
-gitgit('chvgf');
+    gitgit('chvgf');
 
     // 3-2. 오류 처리
     // 일반적인 프로미스에서는 catch()를 사용하여 오류들을 처리
@@ -151,7 +152,7 @@ gitgit('chvgf');
     const loginUser = (id, password) => {
       return new Promise((resolve, reject) => {
         setTimeout(() => {
-          if(id === 'goni' && password ==='1234') {
+          if (id === 'goni' && password === '1234') {
             resolve(id);
           } else {
             reject(new Error('존재하지 않음'));
@@ -164,20 +165,20 @@ gitgit('chvgf');
       return new Promise((resolve, reject) => {
         setTimeout(() => {
           if (userId === 'goni') {
-            resolve({ name: 'JH KIM', role: 'admin'});
+            resolve({ name: 'JH KIM', role: 'admin' });
           } else {
             reject(new Error('접근 권한 없음'));
           }
         }, 1000);
       })
     };
-    
+
 
     // 힌트: 가장 먼저 async 함수 만들기
     const id = prompt('아이디?');
     const password = prompt('비밀번호?');
 
-    const loginAndGetRoles = async function(id, password) {
+    const loginAndGetRoles = async function (id, password) {
       try {
         const userId = await loginUser(id, password);
         const userInfo = await getRoles(userId);
@@ -194,7 +195,9 @@ gitgit('chvgf');
 
   </script>
 </head>
+
 <body>
-  
+
 </body>
+
 </html>

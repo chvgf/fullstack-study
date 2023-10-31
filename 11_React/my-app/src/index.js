@@ -51,6 +51,7 @@ import CounterEffect from './chapter7/7.3/Ex1/CounterEffect';
 import EffectSummary from './chapter7/7.3/Ex2/EffectSummary';
 import EffectContainer from './chapter7/7.3/Ex2/EffectContainer';
 import TimerContainer from './chapter7/7.3/Ex3/TimerContainer';
+import ApiRequest from './chapter17/ApiRequst';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -99,7 +100,7 @@ root.render(
   // <CounterEffect />
   // <EffectSummary />
   // <EffectContainer />
-  <TimerContainer />
+  // <TimerContainer />
 
   // 8장 예제
   // 8.1
@@ -151,6 +152,9 @@ root.render(
 
   // 16장 예제
   // <SimpleRouter />
+
+  // 17장 예제
+  <ApiRequest />
 );
 
 // If you want to start measuring performance in your app, pass a function
