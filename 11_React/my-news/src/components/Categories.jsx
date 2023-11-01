@@ -45,6 +45,7 @@ const CategoriesBlock = styled.div`
     width: 100%;
     overflow-x: auto;
   }
+
 `;
 
 // Link 대신 NavLink 사용해보기
@@ -63,6 +64,17 @@ const Category = styled(NavLink)`
 
   & + & {
     margin-left: 1rem;
+  }
+
+  /* 현재 선택된 카테고리 값에 스타일 적용 */
+  /* active라는 클래스 값이 있으면 적용 */
+  &.active {
+    font-weight: 600;
+    border-bottom: 2px solid #22b8cf;
+    color: #22b8cf;
+  }
+  &.active:hover {
+    color: #3bc9db;
   }
 `;
 
