@@ -24,7 +24,7 @@ export const { getAllProducts, getSelectedProduct } = productSlice.actions;
 
 // 선택자 함수
 export const selectProductList = (state) => state.product.productList;
-export const selectSelectedProduct = (state) => state.product.selectedproduct;
+export const selectSelectedProduct = (state) => state.product.selectedProduct;
 
 // 리듀스 함수들
 export default productSlice.reducer;
