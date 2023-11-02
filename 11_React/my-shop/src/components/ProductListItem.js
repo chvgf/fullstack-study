@@ -12,6 +12,7 @@ import styled from 'styled-components';
 
 function ProductListItem(props) {
   const { productListItem: { title, price, imagePath, id } } = props;
+  console.log(props.productListItem);
 
   const navigate = useNavigate();
 

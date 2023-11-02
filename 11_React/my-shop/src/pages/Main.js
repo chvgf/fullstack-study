@@ -1,13 +1,15 @@
 import React, { useEffect } from 'react';
 import axios from "axios";
 import styled from "styled-components";
-import { Col, Container, Row } from 'react-bootstrap';
+import { Button, Col, Container, Row } from 'react-bootstrap';
+import { PulseLoader } from "react-spinners";
 
 // 리액트(JS)에서 이미지 파일 가져오기
 import yonexImg from "../images/yonex.jpg";
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllProducts, selectProductList } from '../features/product/productSlice';
+import { addMoreProducts, getAllProducts, getMoreProductAsync, selectProductList, selectStatus } from '../features/product/productSlice';
 import ProductListItem from '../components/ProductListItem';
+import { getMoreProducts } from '../api/productAPI';
 
 const MainBackground = styled.div`
   height: 500px;
@@ -20,6 +22,7 @@ const MainBackground = styled.div`
 function Main(props) {
   const dispatch = useDispatch();
   const productList = useSelector(selectProductList);
+  const status = useSelector(selectStatus); // API요청 상태 (로딩 상태)
 
   // 처음 마운트 됐을 때 서버에 상품 목로 데이터를 요청하고
   // 그 결과를 리덕스 스토어에 전여 상태로 저장
@@ -34,6 +37,15 @@ function Main(props) {
       console.log(error);
     });
   }, []);
+
+  const hendleGetMoreProducts = async () => {
+    const result = await getMoreProducts();
+    dispatch(addMoreProducts(result))
+  };
+
+  const hendleGetMoreProductsAsync = () => {
+    dispatch(getMoreProductAsync());
+  };
 
 
   return (
@@ -76,8 +88,33 @@ function Main(props) {
               return <ProductListItem key={productListItem.id} productListItem={productListItem} />
             })}
 
+            {/* 로딩 만들기 */}
+            {status === 'loading' &&
+            <div>            
+              <PulseLoader
+                color="#36d7b7"
+                margin={50}
+                size={25}
+                speedMultiplier={1}
+              />
+              </div>}
+
         </Row>
       </Container>
+
+      {/* 상품 더 보기 기능 만들기
+        더보기 버튼을 클릭 시 axios를 사용하여 데이터 요청
+        받아온 결과를 전역 상태에 추가하기 위해 slice에 리듀서 추가 및 액션 생성함수 export
+        스토어에 dispatch로 요청 보내기 */}
+        {/* HTTP 요청 코드를 함수로 만들어서 api 폴더로 추출 */}
+        <Button variant='secondary' className='mb-4' onClick={hendleGetMoreProducts}>
+          더보기
+        </Button>
+
+        {/* thunk를 이용한 비동기 작업 처리하기 */}
+        <Button variant='secondary' className='mb-4' onClick={hendleGetMoreProductsAsync}>
+          더보기 {status}
+        </Button>
       </section>
     </>
   );
