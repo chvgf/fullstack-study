@@ -78,6 +78,20 @@ function ProductDetail(props) {
       clearTimeout(timeout);
     };
   }, []);
+
+  // 상품 상세페이지에 들어갔을 때 해당 상품이 존재할때만 id값을 localStorage에 추가
+  useEffect(() => {
+    console.log(product);
+    if (!product) return
+
+    let latestViewed = JSON.parse(localStorage.getItem('latestViewed')) || []; // 처음에 null이니까 기본값으로 빈배열 넣어줌
+    // id값을 넣기 전에 기존 배열에 존재하는지 검사하거나
+    // 아니면 일단 넣고 set 자료형을 이용하여 중복 제거(간편함)
+    latestViewed.push(product.id);
+    latestViewed = new Set(latestViewed); // 배열을 Set 객체로 만듦 (중복제거)
+    latestViewed = [...latestViewed]; // Set 객체를 다시 배열로 변환
+    localStorage.setItem('latestViewed', JSON.stringify(latestViewed)); // JSON 문자열로 저장
+  }, [product]);
   
   // 없는 상품일 때 예외 처리
   if (!product) {

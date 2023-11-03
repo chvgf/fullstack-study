@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addMoreProducts, getAllProducts, getMoreProductAsync, selectProductList, selectStatus } from '../features/product/productSlice';
 import ProductListItem from '../components/ProductListItem';
 import { getMoreProducts } from '../api/productAPI';
+import LatestView from '../components/LatestView';
 
 const MainBackground = styled.div`
   height: 500px;
@@ -116,6 +117,9 @@ function Main(props) {
           더보기 {status}
         </Button>
       </section>
+
+      {/* 최근 본 상품 컴포넌트 */}
+      <LatestView />
     </>
   );
 }

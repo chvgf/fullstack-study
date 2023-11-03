@@ -41,7 +41,7 @@ function Cart(props) {
                 </button>
                 {cartItem.count}
                 <button
-                  onClick={() => {dispatch(increaseCount(cartItem.id))}}
+                  onClick={() => {dispatch(increaseCount(cartItem))}}
                 >
                   +
                 </button>
