@@ -146,7 +146,7 @@ function ProductDetail(props) {
             <div>탭 내용1</div>,
             <div>탭 내용2</div>,
             <div>탭 내용3</div>,
-            <div>탭 내용4</div>
+            <div>탭 내용4</div>ㄴ
           ][showTabIndex]
         } */}
         {/* Quiz: 객체 형태 */}
@@ -156,7 +156,7 @@ function ProductDetail(props) {
             'review': <div>탭 내용2</div>,
             'qa': <div>탭 내용3</div>,
             'exchange': <div>탭 내용4</div>,
-          }[showTab] // state 하나 만들어가다
+          }[showTab] // state 하나 만들어다가
         }
 
     </Container>
