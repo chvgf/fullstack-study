@@ -19,7 +19,7 @@ function ProductListItem(props) {
   return (
     <Col md={4} className='cursor-pointer'>
       <img src= {imagePath} width="80%" 
-          // 상품 클릭 시 이동 경로 설정하기
+        // 상품 클릭 시 이동 경로 설정하기
         onClick={() => {
           // /detail/해당 상품 id
           navigate(`/detail/${id}`)

@@ -1,12 +1,13 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Alert, Button, Col, Container, Form, Nav, Row, TabContent } from 'react-bootstrap';
+import { Alert, Button, Col, Container, Form, Modal, Nav, Row, TabContent } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { clearSelectedProduct, getSelectedProduct, selectSelectedProduct } from '../features/product/productSlice';
 import styled, { keyframes } from 'styled-components';
 import { toast } from 'react-toastify';
 import TabContents from '../components/TabContents';
+import { addItemToCart } from '../features/cart/cartSlice';
 
 // 스타일드 컴포넌트를 이용한 애니메이션 속성 적용
 const highlight = keyframes`
@@ -40,10 +41,15 @@ function ProductDetail(props) {
   const [alert, setAlert] = useState(true);
   const [showTabIndex, setShowTabIndex] = useState(0); // 탭 상태
   const [showTab, setShowTab] = useState('detail');
+  const [showModal, setShowModal] = useState(false); // 모달 상태
+  const handleCloseModal = () => setShowModal(false)
+  const handleOpenModal = () => setShowModal(true)
+  const navigate = useNavigate();
   
   // 처음 마운트 됐을 때 서버에 상품 id를 이용하여 데이터를 요청하고
   // 그 결과를 리덕스 스토어에 저장
   useEffect(() => { 
+
     // 서버에 특정 상품의 데이터 요청
     const fetchProductById = async () => {
       try {
@@ -100,6 +106,23 @@ function ProductDetail(props) {
           </Col>
 
           <Button variant='primary'>주문하기</Button>
+          <Button variant='warning' 
+            onClick={
+          //     () => {dispatch(addItemToCart({ 
+          //     id: product.id,
+          //     title: product.title,
+          //     price: product.price,
+          //     count: oderCount
+          // }))}
+              () =>
+                {dispatch(addItemToCart({ 
+                  ...product,
+                  count: oderCount
+          }))
+                handleOpenModal();
+        }}
+          >
+            장바구니 담기</Button>
         </Col>
       </Row>
 
@@ -158,6 +181,26 @@ function ProductDetail(props) {
             'exchange': <div>탭 내용4</div>,
           }[showTab] // state 하나 만들어다가
         }
+
+        {/* 장바구니에 담긴 모달 만들기 
+            추후 공통 모달로 만드는 것이 좋다*/}
+            <Modal show={showModal} onHide={handleCloseModal}>
+              <Modal.Header closeButton>
+                <Modal.Title>💱준우네 샵 알림</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                장바구니에 상품을 담았습니다. <br/>
+                장바구니로 이동하시겠습니까?
+              </Modal.Body>
+              <Modal.Footer>
+                <Button variant="secondary" onClick={handleCloseModal}>
+                  취소
+                </Button>
+                <Button variant="primary" onClick={() => navigate('/cart')}>
+                  확인
+                </Button>
+              </Modal.Footer>
+            </Modal>
 
     </Container>
   );

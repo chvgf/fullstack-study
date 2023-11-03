@@ -9,6 +9,7 @@ import { Route, Routes } from "react-router-dom";
 import Layout from "./pages/Layout";
 import Main from "./pages/Main";
 import ProductDetail from "./pages/ProductDetail";
+import Cart from "./pages/Cart";
 
 
 const GlobalStyle = createGlobalStyle`
@@ -51,7 +52,8 @@ function App() {
             예: /detail/1 로 접속하면 productId에 1이 담기도록 설정 */}
           <Route path="detail/:productId" element={<ProductDetail />}/>
 
-          {/* <Route path="cart" element={undefined} /> */}
+          <Route path="cart" element={<Cart />} />
+          <Route path="*" element={<div>페이지가 존재하지 않습니다.</div>}/>  {/* 지정한 경로를 제외한 모든 경로 (*) */}
         </Route>
       </Routes>
 
