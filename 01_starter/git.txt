@@ -115,3 +115,14 @@ git checkout -t origin/feature/login
 [참고]
 https://techblog.woowahan.com/2553/
 https://ujuc.github.io/2015/12/16/git-flow-github-flow-gitlab-flow/
+
+## git fork
+- fork는 다른 사람의 원격 저장소를 내 원격 저장소로 복제하는 것
+- fork를 주로 쓰는 경우?
+주로 오픈소스 프로젝트에 기여할때 (Contributor Vs Collaborator)
+즉, Repository에 권한이 없는 사용자가 저장소를 fork하고 fork한 자신의 저장소에 변경 사항을 적용한 후 Push한다. 
+이 후 원래 저장소(original repository)에 내 저장소에 있는 브랜치를 Pull Request 한다. 
+내가 만든 코드가 저장소 관리자에 의해 ㅇㅋ되면 해당 저장소에 Merge 된다.
+
+## clone과의 차이?
+clone은 원격 저장소를 내 로컬로 복제하는 것(로컬 저장소가 생김)
