@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RESTful SERVER</title>
+
+  <!-- 서버에 css파일에 대한 GET 요청을 보냄 -->
+  <link rel="stylesheet" href="./restFront.css">
+</head>
+
+<body>
+  <nav>
+    <!-- a 태그를 누르는 것도 GET 요청 -->
+    <a href="/">Home</a>
+    <a href="/about">About</a>
+  </nav>
+  <div>
+    <form id="form">
+      <label for="username">사용자</label>
+      <input type="text" id="username">
+      <button type="submit">등록</button>
+    </form>
+  </div>
+  <div id="list"></div>
+
+  <!-- 서버에 js 파일에 대한 GET 요청을 보냄 -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="./restFront.jsx"></script>
+</body>
+
+</html>
