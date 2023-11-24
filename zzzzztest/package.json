@@ -1,0 +1,17 @@
+{
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "scripts": {
+    "start": "nodemon jwS"
+  },
+  "name": "zzzzztest",
+  "version": "1.0.0",
+  "main": "jwS.jsx",
+  "author": "js.c.test",
+  "license": "ISC",
+  "description": "리액트 연습"
+}
