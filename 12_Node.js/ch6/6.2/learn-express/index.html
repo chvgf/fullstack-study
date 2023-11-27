@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>익스프레스 서버</title>
+</head>
+
+<body>
+  <h1>익스프레스</h1>
+  <p>배워보자</p>
+
+
+  <div>
+    <!-- 폼테그 method="요청 방식", action="경로" -->
+    <form id="form" method="post" action="/abcd">
+      <label for="test">사용자</label>
+      <input type="text" id="test" name="test">
+      <button type="submit">등록</button>
+    </form>
+  </div>
+
+
+
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+    document.getElementById('form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const username = e.target.test.value;
+      try {
+        const result = await axios.post('/abcd', { username });
+        console.log(result);
+      } catch (error) {
+        console.error(error);
+      }
+      // e.target.test.value = ''
+    });
+  </script>
+
+</body>
+
+</html>
