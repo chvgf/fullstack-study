@@ -4,6 +4,8 @@ const dotenv = require('dotenv');
 const morgen = require('morgan');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
+const multer = require('multer');
+const fs = require('fs');
 
 // dotenv: 환경변수(시스템에 따른 설정값이나 비밀키 등) 관리
 // 별도의 파일로 관리하는 이유는 보안과 설정의 편의성 때문
@@ -18,7 +20,7 @@ app.set('port', process.env.PORT || 3000);
 // 클라이언트에서 어떤 요청이 왔는지 서버에서 어떻게 응답했는지 정보가 서버에 기록됨
 // GET /GET / 200 6.106 ms - 281       304 4.976 ms - -(불러온 html 파일 변화없을때는 이렇게나옴)
 // GET요청 /주소(경로) 응답코드 응답에 걸린 시간 응답길이(바이트)
-app.use(morgen('dev')); // 개발 시 사용
+// app.use(morgen('dev')); // 개발 시 사용
 // app.use(morgen('combined')); // 배포 시 사용 - ip주소, 날짜/시간, 브라우저 정보 등 더 자세히 기록됨
 
 // Express 제공 static 미들웨어: static 파일들을 제공하는 미들웨어
@@ -61,6 +63,98 @@ app.use(session({
   name: 'session-cookie', // 세션 쿠키 이름에 대한 설정, 기본값은 'connect.sid'
 }));
 
+// 미들웨어간 데이터 공유 및 전달하기
+// 1) app.set은 서버가 켜져있는 동안 서버 내내 유지
+// 2) req.session은 나의 한해서(=같은 세션 안에서) 계속 유지하고 싶은 데이터
+// 3) req, res는 요청 하나 동안만 유지(1회성)
+app.use((req, res, next) => {
+  req.data = '전달 데이터'
+  res.locals.data = '데이터 넣기' // 일반적으로 이렇게 사용
+  next();
+});
+
+// miter 설정하기
+// 서버 시작할 때 uploads
+try {
+  fs.readdirSync('uploads')
+} catch (error) {
+  console.error('uploads 폴더가 없어 uploads 폴더를 생성합니다');
+  fs.mkdirSync('uploads')
+}
+// multer 자체가 미들웨어는 아니고 multer 함수를 호출하면 나오는 갹체 안에 4개자 미들웨어가 들어있음
+const upload = multer({
+  storage: multer.diskStorage({ // 하드디스크에 저장(실제 서버 운영 시 서버 디스크 대신으 클라우드 스토리지 서비스에 저장하는 게 좋음)
+  destination(req, file, done) { // 여기에 저장할지
+    done(null, 'uploads/');
+  },
+  filename(req, file, done) { // 어떤 이름으로 저장할지
+    const ext = path.extname(file.originalname); // 확장자 추출
+    done(null, path.basename(file.originalname, ext) + Date.now() + ext); 
+    // 파일명 + 날짜/시간 + 확장자
+    // 이렇게 하는 이유? 파일 이름이 중복되면 덮어 씌우기 때문에
+  }
+  // done(에러 시 에러값, 성공 시 전달될 값); // 에러 발생 시 에러 처리 미들웨어로 전달
+  }),
+  limits: { fileSize: 5 * 1024 * 1024 } // 파일 사이즈(바이트 단위): 5MB로 제한(그 이상 업로드 시 400번대 에러 발생)
+});
+
+app.get('/upload', (req, res) => {
+  res.sendFile(path.join(__dirname, 'multpart.html'));
+});
+
+
+// Quiz 1~3
+// app.post('/upload', upload.single('image'), (req, res) => {
+//   console.log(req.file);
+//   console.log(req.body);
+//   res.send('ok!')
+// });
+// app.post('/upload', upload.array('image'),(req, res) => {
+//   console.log(req.files);
+//   console.log(req.body);
+//   res.send('ok!');
+// });
+app.post('/upload',
+  upload.fields([{ name: 'image1' }, { name: 'image2' }]),
+  (req, res) => {
+    console.log(req.files.image1);
+    console.log(req.files.image2);
+    console.log(req.body);
+    res.send('ok!');
+  }
+);
+
+// multer의 4가지 미들웨어
+// 1) 파일을 하나만 업로드 하는 경우 single 미들웨어 사용
+// => 인자값은 input 태그의 name 속성과 일치해야 됨
+// app.post('/upload', upload.single('image'),(req, res) => { // 라우터 전에 미들웨어로 장착
+//   console.log(req.file); // 업로드 성공 시 정보가 저장됨
+//   console.log(req.body); // { title: '' }
+//   res.send('ok!')
+// });
+// 2) 여러파일을 업로드 하는 경우 array 미들웨어 사용
+// app.post('/upload', upload.array('image'),(req, res) => {
+//   console.log(req.files); // 이 때는 file이 아닌 files 임
+//   console.log(req.body);
+//   res.send('ok!');
+// });
+// 3) 여러 파일(input 태그를 여러 개 사용해서 name이 다른)을 업로드 하는 경우 filelds 미들웨어 사용
+// app.post('/upload',
+//   upload.fields([{ name: 'image1' }, { name: 'image2' }]),
+//   (req, res) => {
+//     console.log(req.files.image1);
+//     console.log(req.files.image2);
+//     console.log(req.body);
+//     res.send('ok!');
+//   }
+// );
+// 4) 멀티파트로 보내는데 파일을 업로드하지 않을 때(잘 안씀)
+// app.post('/upload', upload.none(),(req, res) => {
+//   console.log(req.files); // undefined
+//   console.log(req.body);
+//   res.send('ok!');
+// });
+
 app.get('/', (req, res) => {
   // 쿠키 사용하기
   // 이전 방식: 임의로 만든 parseCookies() 함수를 만들어서 객체로 변환
@@ -70,7 +164,7 @@ app.get('/', (req, res) => {
   // 쿠키 설정하기
   // 이전 방식: 'set-Cookie': `name=${encodeURIComponent(name)}; Expires=${expires.toGMTString()}; HttpOnly; path=/`
   // 위 문자열 쓴 것을 메서드로 쉽게 사용
-  // res.cookie(키, 값, [옵션]);
+  // res.coomkie(키, 값, [옵션]);
   res.cookie('name', '천준우', {
     expires: new Date(Date.now() + 5 * 60 * 1000), // 5분 뒤
     httpOnly: true,
@@ -96,6 +190,8 @@ app.get('/', (req, res) => {
   console.log(req.sessionID);
   console.log(req.session);
 
+  // 데이터 받기
+  console.log(req.data);
 
   res.sendFile(path.join(__dirname, 'index.html'));
 });

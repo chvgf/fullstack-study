@@ -1,0 +1,77 @@
+<!-- 1. form 태그로 보내는 경우(동기식) -->
+<form id="form" action="/upload" method="post" enctype="multipart/form-data">
+  <!-- 파일 하나 -->
+
+  <!-- 여러 파일 -->
+  <!-- <input type="file" name="image" multiple> -->
+
+  <!-- 여러 파일(input 태그를 여러 개 사용해서 name이 다른 경우) -->
+  <input type="file" name="image1">
+  <input type="file" name="image2">
+
+  <input type="text" name="title">
+  <button type="submit">업로드</button>
+
+</form>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+  // document.getElementById('form').addEventListener('submit', async (e) => {
+  //   e.preventDefault();
+  //   const up = e.target.image.files[0]; // FileList 객체
+  //   const up2 = e.target.title.value;
+  //   console.log(up);
+  //   const formData = new FormData(); // == enctype="multipart/form-data"
+  //   formData.append('title', up2);
+  //   formData.append('image', up);
+  //   console.log(formData);
+
+  //   try {
+  //     const result = await axios.post('/upload', formData);
+  //     console.log(result);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // });
+
+
+  // document.getElementById('form').addEventListener('submit', async (e) => {
+  //   e.preventDefault();
+  //   const up = e.target.image.files;
+  //   const upTitle = e.target.title.value;
+  //   const formData = new FormData();
+
+  //   for (let i = 0; i < up.length; i++) {
+  //     formData.append('image', up[i]);
+  //   }
+  //   console.log(up);
+  //   formData.append('title', upTitle);
+  //   console.log(formData);
+  //   try {
+  //     const result = await axios.post('/upload', formData);
+  //     console.log(result);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // });
+
+  document.getElementById('form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const up1 = e.target.image1.files[0];
+    const up2 = e.target.image2.files[0];
+    const upTitle = e.target.title.value;
+    const formData = new FormData();
+
+    formData.append('image1', up1);
+    formData.append('image2', up2);
+
+    formData.append('title', upTitle);
+    console.log(formData);
+    try {
+      const result = await axios.post('/upload', formData);
+      console.log(result);
+    } catch (error) {
+      console.error(error);
+    }
+  });
+</script>
