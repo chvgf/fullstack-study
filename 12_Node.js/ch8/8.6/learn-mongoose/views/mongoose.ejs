@@ -50,18 +50,10 @@
     <tbody>
       <% for (user of users) { %>
         <tr>
-          <td>
-            <%= user.id %>
-          </td>
-          <td>
-            <%= user.name %>
-          </td>
-          <td>
-            <%= user.age %>
-          </td>
-          <td>
-            <%= user.married ? '기혼' : '미혼' %>
-          </td>
+          <td><%= user.id %></td>
+          <td><%= user.name %></td>
+          <td><%= user.age %></td>
+          <td><%= user.married ? '기혼' : '미혼' %></td>
         </tr>
         <% } %>
     </tbody>
