@@ -1,6 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv');
-const morgen = require('morgan');
+const morgan = require('morgan');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
@@ -18,7 +18,7 @@ const app = express();
 
 app.set('port', process.env.PORT || 3002);
 
-app.use(morgen('dev'));
+app.use(morgan('dev'));
 app.use('/', express.static(path.join(__dirname, 'public')));
 app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(express.json());
