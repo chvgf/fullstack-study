@@ -71,6 +71,27 @@ Allow access from anywhere를 누르거나 0.0.0.0/0 을 추가하기
 8. (참고)
 - MongoDB Document
 https://www.mongodb.com/docs/
+- MongoDB 연산자
+https://www.mongodb.com/docs/v7.0/reference/operator/
+
+- 업데이트 연산자
+$set(변경, 바꿀값)
+$inc(증가, 기존값에 더해줄 값)
+그 외 연산자 (잘 안씀)
+$mul(곱하기, 기존값에 곱해줄 값)
+$unset(삭제, 기존 필드값 삭제)
+$min(기존값보다 적을 때만 변경)
+$rename(key값 이름 변경) 등
+
+- 동시에 여러 document 수정은 updateMany()
+like 항목이 10 이상인 document 전부 수정? 
+비교 연산자: &gt(초과), $gte(이상), &lt(미만), $lte(이하), $ne(not equal)
+await db.collection('post').updateMany({ like: { $gt: 10 } }, { 
+  $set: {
+    수정할 내용
+  } 
+});
+
 - MongoDB와 몽구스 시작하기
 https://www.mongodb.com/developer/languages/javascript/getting-started-with-mongodb-and-mongoose/
 - Mongoose 사용하기
