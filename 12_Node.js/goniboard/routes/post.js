@@ -2,7 +2,7 @@ const express = require('express');
 const { ObjectId } = require('mongodb')
 
 const { client } = require('../database');
-const db = client.db('board');
+const db = client.db('board'); // board 데이터베이스에 연결
 
 const router = express.Router();
 
@@ -230,17 +230,19 @@ router.get('/', async (req, res) => {
   // 데이터의 양이 너무 많아서 skip(1000000)을 많이 하게 되면 성능에 안좋음
   // => 너무 많이 skip 하지 못하게 막거나 다른 페이지네이션 방법 구현
   // 장점: 매우 빠름(_id 기준으로 뭔가 찾는 건 DB가 가장 빠르게 하는 작업임)
-  // 단점: 바로 다음 게시물만 가져올 수 있어서 1페이지 보다가 3페이지로 이동 불가
+  // 단점: 바로 다음 게시물만 가져올 수 있음
   let posts;
   if (req.query.nextId) {
     posts = await db.collection('post')
     .find({ _id: { $gt: new ObjectId(req.query.nextId) } }) // ObjectId로 대소 비교
-    .limit(5).toArray()
+    .limit(5).toArray
   } else {
     posts = await db.collection('post').find().limit(5).toArray(); // 처음 5개
   }
 
   res.render('list', { posts, numOfPage, currentPage });
+
+
 })
 
 module.exports = router;
