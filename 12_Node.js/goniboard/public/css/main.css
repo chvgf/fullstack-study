@@ -83,3 +83,35 @@ input, div {
   margin: 20px;
   border-radius: 8px;
 }
+
+/* 페이지네이션 */
+.pagination-bg {
+  margin: 0 20px;
+  display: flex;
+  justify-content: center;
+}
+.pagination-bg > a {
+  padding: 15px;
+  background: white;
+  color: #3366ff;
+}
+.pagination-bg > a:hover {
+  text-shadow: 0.5px 0.5px 1px;
+}
+.pagination-bg > a.active {
+  background: #3366ff;
+  color: white;
+}
+
+.next-bg {
+  margin: 0 20px;
+  display: flex;
+}
+.next-bg > a {
+  padding: 15px;
+  background: white;
+  border-radius: 8px;
+}
+.next-bg > a:hover {
+  background: lightgray;
+}

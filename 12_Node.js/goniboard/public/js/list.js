@@ -22,6 +22,7 @@ document.querySelectorAll('.delete').forEach((deleteBtn, index) => {
   });
 });
 
+
 // (참고) HTML 보여주는 법(2가지)
 // 1) 서버에서 다 만들어서 보내기(SSR)
 // 2) 서버는 데이터만 보내고 브라우저에서 완성하기(CSR)

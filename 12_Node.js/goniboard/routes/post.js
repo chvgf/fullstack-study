@@ -7,19 +7,19 @@ const db = client.db('board');
 const router = express.Router();
 
 // 글 목록 기능 만들기
-// GET /post 라우터
-router.get('/', async (req, res) => {
-  const posts = await db.collection('post').find({}).toArray(); // post 컬렉션의 모든 document를 출력하는 법
+// GET /post 라우터 /////밑에 재작성
+// router.get('/', async (req, res) => {
+//   const posts = await db.collection('post').find({}).toArray(); // post 컬렉션의 모든 document를 출력하는 법
 
-  // 글 목록 페이지 만들어서 웹페이지에 서버(DB) 데이터 꽂아 넣기 => 템플릿 엔진
-  // res.render('list');
+//   // 글 목록 페이지 만들어서 웹페이지에 서버(DB) 데이터 꽂아 넣기 => 템플릿 엔진
+//   // res.render('list');
 
-  // 서버 데이터를 ejs파일에 넣으려면?
-  // 1) ejx 파일로 데이터 전달
-  // 2) ejx 파일 안에서 <%= 데이터~~~~~ %>
-  // 3) ejx 문법으로 HTML 안에서도 JS 사용하려면 <% 자바스크립트 코드~~~~~ %>
-  res.render('list', { posts });
-});
+//   // 서버 데이터를 ejs파일에 넣으려면?
+//   // 1) ejx 파일로 데이터 전달
+//   // 2) ejx 파일 안에서 <%= 데이터~~~~~ %>
+//   // 3) ejx 문법으로 HTML 안에서도 JS 사용하려면 <% 자바스크립트 코드~~~~~ %>
+//   res.render('list', { posts });
+// });
 
 // 글 작성 기능 만들기
 // 사용자가 작성한 글을 DB에 저장해주기
@@ -202,5 +202,45 @@ router.delete('/:id', async (req, res) => {
 // 2) Ajax 방식
 // 3) 라우트 매개변수(URL 파라미터)
 // 4) 쿼리스트링
+
+// 글 목록 여러 페이지로 나누기(페이지네이션 pagination)
+// 예를 들어 글 1000개를 전부 가져와서 보여주도록 하면 DB도 부담되고 브라우저도 부담이 됨
+// 1) 페이지 이동 버튼 만들기
+// 2) 페이지마다 5개의 글을 보여줌(즉, 1페이지는 1~5번글, 2페이지는 6~10번글)
+
+// GET /post 라우터 재작성
+router.get('/', async (req, res) => {
+  // 테스트
+  // limit(5): 위에서 부터 5개만 가져옴
+  // skip(5): 5개를 건너뜀
+  // const posts = await db.collection('post').find({}).skip(5).limit(5).toArray();
+
+  // 페이지네이션 구현 방법(1)
+  // 페이지 번호는 쿼리스트링 또는 URL 파라미터 사용
+  // 1 -> 0, 2 -> 5, 3 -> 10
+  // const posts = await db.collection('post').find({}).skip(( req.query.page - 1) * 5 ).limit(5).toArray();
+
+  // 페이지 계산
+  const totalcount = await db.collection('post').countDocuments({}); // 전체 document 개수
+  const postPerPage = 5; // 페이지 당 콘텐츠 개수
+  const numOfPage = Math.ceil(totalcount / postPerPage) ; // 페이지 수
+  const currentPage = req.query.page || 1; // 현제 페이지
+
+  // 페이지네이션 구현 방법(2)
+  // 데이터의 양이 너무 많아서 skip(1000000)을 많이 하게 되면 성능에 안좋음
+  // => 너무 많이 skip 하지 못하게 막거나 다른 페이지네이션 방법 구현
+  // 장점: 매우 빠름(_id 기준으로 뭔가 찾는 건 DB가 가장 빠르게 하는 작업임)
+  // 단점: 바로 다음 게시물만 가져올 수 있어서 1페이지 보다가 3페이지로 이동 불가
+  let posts;
+  if (req.query.nextId) {
+    posts = await db.collection('post')
+    .find({ _id: { $gt: new ObjectId(req.query.nextId) } }) // ObjectId로 대소 비교
+    .limit(5).toArray()
+  } else {
+    posts = await db.collection('post').find().limit(5).toArray(); // 처음 5개
+  }
+
+  res.render('list', { posts, numOfPage, currentPage });
+})
 
 module.exports = router;

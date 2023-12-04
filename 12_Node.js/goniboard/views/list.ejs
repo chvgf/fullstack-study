@@ -48,6 +48,20 @@
     <% } %>
   </div>
 
+  <!-- 페이지 이동 버튼 -->
+  <div class="pagination-bg">
+    <% for (let i = 1; i < numOfPage; i++) { %>
+      <a href="/post?page=<%= i %>" class="<%= i == currentPage ? 'active' : '' %>">
+        <%= i %>
+      </a>
+    <% } %> 
+  </div>
+
+  <!-- 다음 버튼 -->
+  <div class="next-bg">
+    <a href="post?nextId=<%= posts[posts.length - 1]?._id %>">다음</a>
+  </div>
+
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="/js/list.js"></script>
 </body>
