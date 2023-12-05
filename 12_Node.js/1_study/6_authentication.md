@@ -35,6 +35,12 @@
 로그인이 불가능함
 그래서 보통 OAuth는 옵션으로 제공하는 편
 
-4. 참고 자료
+4. 세션을 DB에 저장하려면?
+사용자가 로그인하면 세션을 하나 만들어주는데 DB가 아니라 서버 컴퓨터 메모리(렘)에 저장
+즉, 서버가 재시작되면 세션이 날라감
+그게 싫고 안정적으로 쓰고싶거나 웹서버가 여러대 일때 세션을 공유하고 싶다면 세션을 DB에 저장하면 됨
+connect-mongo, connect-redis 같은 라이브러리 설치 후 express-session 설정에 store 속성에 설정
+
+5. 참고 자료
 - Passport 모듈 사용법
 https://inpa.tistory.com/entry/NODE-%F0%9F%93%9A-Passport-%EB%AA%A8%EB%93%88-%EA%B7%B8%EB%A6%BC%EC%9C%BC%EB%A1%9C-%EC%B2%98%EB%A6%AC%EA%B3%BC%EC%A0%95-%F0%9F%92%AF-%EC%9D%B4%ED%95%B4%ED%95%98%EC%9E%90

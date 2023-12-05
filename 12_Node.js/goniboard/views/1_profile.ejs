@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>frofile</title>
+
+  <style>
+    img.profile {
+      display: block;
+      margin: auto;
+    }
+
+    h3.title {
+      text-align: center;
+    }
+
+    p.content-1 {
+      text-align: center;
+      color: red;
+      font-weight: bold;
+    }
+    span.content-2 {
+      text-align: center;
+      color: #000;
+      font-weight: normal;
+    }
+
+    div.box {
+      width: 400px;
+      /* height: 100px; */   /*높이 정하면 콘텐츠 크기커질때 티나감*/
+      border-radius: 5px 10px 10px 10px;
+      background-color: royalblue;
+      margin: auto;
+      padding: auto;
+      text-align: center;
+      box-shadow : 5px 5px black;
+    }
+
+    span.jwc {
+      /* display: block; */
+      text-align: center;
+      color: white;
+      line-height: 100px;
+    }
+  </style>
+</head>
+<body>
+  
+  <a href="">
+    <img class="profile" src="img/logo_resize.png" alt="프로필">
+  </a>
+  <h3 class="title"><%= user.username %></h3>
+  <p class="content-1">Full Stack
+    <span class="content-2">Developer</span>
+  </p>
+  
+  
+  <div class="box">
+    <span class="jwc">안녕하세요. 천준우입니다.</span>
+  </div>
+</body>
+</html>

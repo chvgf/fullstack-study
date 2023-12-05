@@ -1,10 +1,42 @@
 const express = require('express');
-const { ObjectId } = require('mongodb')
+const { ObjectId } = require('mongodb');
+const multer = require('multer');
+const multerS3 = require('multer-s3');
+const { S3Client } = require('@aws-sdk/client-s3');
 
+const { isLoggedIn } = require('../middlewares');
 const { client } = require('../database');
 const db = client.db('board'); // board 데이터베이스에 연결
 
 const router = express.Router();
+
+// multer, S3, aws-sdk 설정
+// 발급받은 엑세스 키랑 비밀키 기입(털리면 안되니까 .env에 저장   env깃헙 안올리게 조심)
+// region: S3 리전(데이터 센터) 설정하는 부분인데 서울이면 ap-northeast-2 기입
+const s3 = new S3Client({
+  credentials: {
+    accessKeyId: process.env.AWS_KEY,
+    secretAccessKey: process.env.AWS_SECRET_KEY
+  },
+  region: 'ap-northeast-2'
+});
+
+// s3 클라이언트
+// 버킷이름 설정
+// 저장할 파일명도 바꿀 수 있음
+// 파일명을 안겹치게 하려면 랜덤 문자(uuid)를 넣던가 아니면 현재 시간(timestamp)을 섞거나
+// 이렇게 하는 이유가 파일 이름이 중복되면 덮어씌우기 때문에
+const upload = multer({
+  storage: multerS3({
+    s3,
+    bucket: 'jwboard', // 만든 버킷 이름
+    key(req, file, cb) { // 원본 파일명을 쓰고 싶으면 file 안에 들어있음
+      cb(null, `original/${Date.now()}_${file.originalname}`); // 업로드 시 파일명
+    }
+  }),
+  limits: { fileSize: 5 * 1024 * 1024 } // 파일 사이즈(바이트 단위): 5MB로 제한(그 이상 업로드 시 400번대 에러 발생)
+});
+// 여기까지 세팅하면 upload.single('인풋의 name') 미들웨어 사용으로 S3에 업로드 가능
 
 // 글 목록 기능 만들기
 // GET /post 라우터 /////밑에 재작성
@@ -31,17 +63,45 @@ const router = express.Router();
 // 3) 이상이 없으면 DB에 저장
 
 // GET/ post/write 라우터
-router.get('/write', (req, res) => {
-  res.render('write');
-})
+router.get('/write', isLoggedIn, (req, res) => {
+  res.render('write')
+  // Quiz
+  // 로그인한 사람만 글을 작성할 수 있게 만들고 싶으면?
+  // 로그인한 경우에 req.user 안에 뭔가 들어있음
+  // 반대로 비어있으면 로그인 안 한 상태
+});
+
+
+// router.get('/write', (req, res) => {
+//   if (req.user) {
+//     res.render('write');
+//   } else {
+//     res.json({
+//       flag: false,
+//       message: '로그인 해야 가능'
+//     });
+//   }
+//   // Quiz
+//   // 로그인한 사람만 글을 작성할 수 있게 만들고 싶으면?
+//   // 로그인한 경우에 req.user 안에 뭔가 들어있음
+//   // 반대로 비어있으면 로그인 안 한 상태
+// });
+
 
 // POST/ post/write 라우터
-router.post('/write', async (req, res) => {
+// 이미지 파일 업로드를 위한 미들웨어 장착
+// name='img'인 파일이 서버로 전송되면 S3에 자동 업로드 해줌
+// 업로드 완료 시 이미지의 URL도 생성해줌(req.file에 들어있음)
+router.post('/write', isLoggedIn, upload.single('img'), async (req, res) => {
+  console.log(req.file); // 업로드 후 S3 객체 정보
+  console.log(req.file.location); // 이미지의 URL 정보, img 태그 src 속성에 넣으면 동작
+
   console.log(req.body); // 클라이언트 보낸 데이터 -> 요청 본문에 담김 -> body-parser가 분석해서 req.body에 객체로 저장
   
+  const username = req.user.username;
   const title = req.body.title;
   const content = req.body.content;
-  
+  const imgUrl = req.file.location;
   
   // 유효성 검사 추가하기
   // 제목이 비어있으면 저장 안함
@@ -54,8 +114,10 @@ router.post('/write', async (req, res) => {
     // QUiz: DB에 저장하기
       try {
         await db.collection('post').insertOne({
+          username: username,
           title: title,
-          content: content
+          content: content,
+          imgUrl: imgUrl // 이미지 URL을 글과 함께 DB에 저장
         });
         
 
@@ -100,6 +162,7 @@ router.get('/:id', async (req, res, next) => {
   try {
     // 실제: 라우트 파라미터 매개변수에 입력한 값을 넣어야함
     const post = await db.collection('post').findOne({ _id: new ObjectId(req.params.id) });
+    const comment = await db.collection('post.comment').findOne({ _id: new ObjectId(req.params.id) }); /////////////ㅇㅇ?ㅇ?ㅇ?ㅇ??
     console.log(post);
     
     // 2) 번에 대한 예외 처리
@@ -109,7 +172,7 @@ router.get('/:id', async (req, res, next) => {
       next(error);
     }
     
-    res.render('detail', { post });
+    res.render('detail', { post, comment });
     
   } catch (err) { // 1번에 대한 예외처리
     err.message = '잘못된 url 입니다.'
@@ -118,6 +181,28 @@ router.get('/:id', async (req, res, next) => {
     next(err);
   }
 });
+router.post('/:id/comment', async (req, res, next) => {      ///////////// 댓글기능 테스트
+  const comment = req.body.comment;
+  const username = req.user.username;
+  // const a = await db.collection('post.comment').find({})
+  // console.log(a);
+
+  try {
+    await db.collection('post.comment').insertOne({
+      comment: comment,
+      username: username
+    });
+    res.json({
+      flag: true,
+      message: '등록성공'
+    })
+
+  } catch (err) {
+    err.status = 500;
+    next(err);
+  }
+});
+
 
 // 글 수정 기능 만들기
 // 1) 수정 버튼 누르면 수정 페이지로
@@ -235,7 +320,7 @@ router.get('/', async (req, res) => {
   if (req.query.nextId) {
     posts = await db.collection('post')
     .find({ _id: { $gt: new ObjectId(req.query.nextId) } }) // ObjectId로 대소 비교
-    .limit(5).toArray
+    .limit(5).toArray();
   } else {
     posts = await db.collection('post').find().limit(5).toArray(); // 처음 5개
   }
