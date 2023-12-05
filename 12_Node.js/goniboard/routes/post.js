@@ -162,7 +162,7 @@ router.get('/:id', async (req, res, next) => {
   try {
     // 실제: 라우트 파라미터 매개변수에 입력한 값을 넣어야함
     const post = await db.collection('post').findOne({ _id: new ObjectId(req.params.id) });
-    const comment = await db.collection('post.comment').findOne({ _id: new ObjectId(req.params.id) }); /////////////ㅇㅇ?ㅇ?ㅇ?ㅇ??
+    const comment = await db.collection('post.comment').find(); /////////////ㅇㅇ?ㅇ?ㅇ?ㅇ??
     console.log(post);
     
     // 2) 번에 대한 예외 처리

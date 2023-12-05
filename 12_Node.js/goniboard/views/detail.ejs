@@ -18,22 +18,24 @@
 
 
 
-  
-  <form id="login-form" class="form-box" action="/post/:id/comment" method="post">
+  <form id="login-form" class="form-box" action="/post/:id/comment" method="post">     <!-- 댓글 테스트 -->
 
     <label for="comment">댓글</label>
     <input type="text" id="comment" name="comment">
     <button type="submit">등록</button>
   </form>
-  <div class="login-form">
+
+  <div class="form-box">
     <%for (let i = 0; i < comment.length; i++) { %>
       <div class="list-box"> 
         <h5>
           작성자: <%= comment[i].username %>
         </h5>
-        <p><%= comment[i].comment %></p>
+        <p>내용: <%= comment[i].comment %></p>
       </div>
       <% } %>
+
+      댓글좀 나와봐
   </div>
 </body>
 </html>
