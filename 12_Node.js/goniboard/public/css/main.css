@@ -13,8 +13,8 @@ a {
 nav {
   display: flex;
   justify-content: space-between;
-  padding: 15px;
   align-items: center;
+  padding: 15px;
   background : white;
 }
 nav a {
@@ -116,3 +116,17 @@ input, div {
 .next-bg > a:hover {
   background: lightgray;
 }
+
+/* 검색 UI */
+.search {
+  margin: 20px 0 0 20px;
+  padding: 5px;
+}
+.search-btn {
+  padding: 6px 10px;
+  background: lightgray;
+  border: none;
+  border-radius: 5px;
+  vertical-align: middle;
+  cursor: pointer;
+} 

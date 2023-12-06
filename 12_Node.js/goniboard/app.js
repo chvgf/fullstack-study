@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const morgen = require('morgan');
 const session = require('express-session');
 const passport = require('passport');
+const MongoStore = require('connect-mongo');
 
 // const connect = require('./schemas/index');
 
@@ -39,6 +40,10 @@ app.use(session({
     httpOnly: true,
     secure: false,
   },
+  store: MongoStore.create({
+    mongoUrl: `mongodb+srv://${process.env.MONGO_ID}:${process.env.MONGO_PASSWORD}@cluster0.txxpbd0.mongodb.net/`,
+    dbName: 'board'
+  }),
   name: 'session-cookie',
 }));
 // passport 미들웨어 설정

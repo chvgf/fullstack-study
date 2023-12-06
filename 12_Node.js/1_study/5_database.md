@@ -74,6 +74,13 @@ https://www.mongodb.com/docs/
 - MongoDB 연산자
 https://www.mongodb.com/docs/v7.0/reference/operator/
 
+
+- MongoDB와 몽구스 시작하기
+https://www.mongodb.com/developer/languages/javascript/getting-started-with-mongodb-and-mongoose/
+- Mongoose 사용하기
+https://velog.io/@ckstn0777/Mongoose-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0
+
+9. 몽고디비 연산자
 - 업데이트 연산자
 $set(변경, 바꿀값)
 $inc(증가, 기존값에 더해줄 값)
@@ -92,7 +99,54 @@ await db.collection('post').updateMany({ like: { $gt: 10 } }, {
   } 
 });
 
-- MongoDB와 몽구스 시작하기
-https://www.mongodb.com/developer/languages/javascript/getting-started-with-mongodb-and-mongoose/
-- Mongoose 사용하기
-https://velog.io/@ckstn0777/Mongoose-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0
+10. DB가 데이터를 찾는 방법
+title이 '제발'이랑 일치하는 document를 가져오라고 find()를 쓰면
+컬렉션의 모든 document를 하나하나 전부 다 검사함
+document에 뭐가 적혀있는지 모르기 때문에 당연히 모든 document를 까볼 수 밖에 없음
+그럼 document가 많아질 수록 점점 느리게 동작함
+
+근데 다행히 이걸 해결할 수 있는 방법도 있는데 
+index라는걸 미리 만들어두면 document가 1억개 있어도 원하는 것만 빠르게 찾아올 수 있음
+
+11. index 동작원리
+예시: 소주 뚜껑 업 & 다운 게임
+1부터 100까지 뚜껑 안쪽에 적힌 숫자를 맞춰야 할 때
+어떻게 질문해야하죠?
+
+절반씩 잘라가며 질문 => 이렇게 찾는 것을 전문용어로 binary search라고 부름
+
+그래서 거의 모든 DB들은 기본적으로 binary search 또는
+그거랑 비슷한 알고리즘으로 데이터를 빠르게 찾아주는데
+이런 검색 알고리즘을 쓰려면 전제 조건이 있음
+데이터가 미리 정렬이 되어있어야 함
+그래야 50? 이라고 물어보고 필요 없는 절반의 데이터를 치울 수 있음
+
+컬렉션에 있던 document 들을 복사해서 미리 정렬해서 두면 되는데
+이런 정렬된 컬렉션 복사본을 index라고 부름
+
+12. index 단점
+1) 만들면 용량 차지함
+index는 진짜로 컬렉션을 통째로 복사해서 정렬해 두는 것이라 용량을 그만큼 차지
+2) document 추가/수정/삭제 시 index에도 반영해야 함
+document 추가/수정/삭제 시 느려질 수도 있음
+
+1),2)의 이유로 => 꼭 검색 작업이 많은 필드들만 index로 만들어 두는 것이 좋다
+
+3) 정확한 단어만 검색 가능
+text로 정렬한 index는 만들 때 띄어쓰기로 단어들을 구분하기 때문에
+만들면 빠르긴 한데 정확한 단어밖에 검색을 못함
+
+단어에 조사가 쓰이는 한국어는 text index가 쓸모가 없음
+우리가 원하는 건 구글 검색 같은 기능이니까
+search index() => full text index 라는 걸 만들면 됨
+
+13. search index 동작원래
+1) 일단 index를 만들 때 document에 있는 문장들을 가져와서 쓸데없는 불용어(관사, 전치사, 조사, 접속사 등) 들을 제거
+예를 들어 
+영어: and or the ~s 등 제거
+한국어: 은, 는, 이, 가, 을, 를, 그리고, 또는 등 제거
+2) 제거 후 단어들을 다 뽑아서 정렬
+3) 이 단언들이 어떤 document에 등장했는지 _id 값을 함께 단어 옆에 기재
+예: 책마다 색인(index)이 있음
+4) 그럼 이제 특정 단어를 검색했을 때 index에서 빠르게 찾을 수 있음
+이때 내부적으로 중요해 보이는 document를 맨 위로 올려서 가져옴(SCORE 점수순), 마치 검색엔진처럼 똑똑함

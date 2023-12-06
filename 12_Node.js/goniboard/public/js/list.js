@@ -27,3 +27,8 @@ document.querySelectorAll('.delete').forEach((deleteBtn, index) => {
 // 1) 서버에서 다 만들어서 보내기(SSR)
 // 2) 서버는 데이터만 보내고 브라우저에서 완성하기(CSR)
 // Ajax를 쓰면 서버가 보낸 데이터만 받아 JS로 HTML을 동적으로 만들어서 현재 페이지에 CSR 구현 가능
+
+document.querySelector('.search-btn').addEventListener('click', async () => {
+  const keyword = document.querySelector('.search').value;
+  location.href = `/post/search?keyword=${keyword}`; // get요청
+})

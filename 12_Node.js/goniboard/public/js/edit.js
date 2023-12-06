@@ -1,4 +1,4 @@
-document.getElementById('register-form').addEventListener('submit', async (e) => {
+document.getElementById('edit-form').addEventListener('submit', async (e) => {
   e.preventDefault();
   const id = e.target.id.value;
   const title = e.target.title.value;

@@ -28,6 +28,13 @@
     </div>
   </div> -->
 
+  <!-- 검색 UI -->
+  <!-- 검색 버튼 누르면 서버로 GET 요청
+    input에 입력한 값도 쿼리스트링으로 보낼 것임
+  -->
+  <input type="text" class="search">
+  <button type="button" class="search-btn">검색</button>
+
   <!-- 반복 렌더링 -->
   <div class="white-bg">
     <%for (let i = 0; i < posts.length; i++) { %>
@@ -37,7 +44,7 @@
       </h5>
       <h4>
         <!-- 글 제목 누르면 성세페이지로 이동하도록 링크 걸기 -->
-        <a href="/post/<%= posts[i]._id %>"><%= posts[i].title %></a>
+        <a href="/post/detail/<%= posts[i]._id %>"><%= posts[i].title %></a>
 
         <!-- 글 수정 버튼 -->
         <a href="/post/edit/<%= posts[i]._id %>">💌</a>
