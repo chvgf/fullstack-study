@@ -13,6 +13,24 @@
     <h4>글 제목: <%= post.title %></h4>
     <h4>글 내용: <%= post.content %></h4>
     <img src="<%= post.imgUrl %>" alt="이미지">
+
+    <hr style="margin-top: 60px;">
+    <div>
+      <p style="display: flex; flex-flow: column; ">
+        <% for (let i = 0; i < comments.length; i++) { %>
+          <strong>
+            작성자: <%= comments[i].author %>
+          </strong>
+          <p>내용: <%= comments[i].content %></p>
+          <br>
+        <% } %>
+      </p>
+    </div>
+    <form action="/post/comment" method="post">
+      <input type="hidden" value="<%= post._id %>" name="postId">
+      <input type="text" name="content">
+      <button type="submit">등록</button>
+    </form>
   </div>
 
 
@@ -21,6 +39,7 @@
   <form id="login-form" class="form-box" action="/post/detail/:id/comment" method="post">     <!-- 댓글 테스트 -->
 
     <label for="comment">댓글</label>
+    <input type="hidden" value="<%= post._id %>" name="postId">
     <input type="text" id="comment" name="comment">
     <button type="submit">등록</button>
   </form>
@@ -35,6 +54,7 @@
       </div>
       <% } %>
 
+      <%= user.username %>:
       댓글좀 나와봐
   </div>
 

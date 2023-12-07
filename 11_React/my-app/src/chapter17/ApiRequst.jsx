@@ -21,7 +21,10 @@ function ApiRequest(props) {
   // 2. async/await 로 리팩터링
   const bandleRequsetByIdAsync = async (id) => {
     try {
-      const response = await axios.get(`https://jsonplaceholder.typicode.com/photos/${id}`);
+      // const response = await axios.get(`https://jsonplaceholder.typicode.com/photos/${id}`);
+      const response = await axios.get(`http://localhost:8088/cors`, {
+        // withCredentials: true
+      });
       setData(response.data);
     } catch (error) {
       console.log(error);
