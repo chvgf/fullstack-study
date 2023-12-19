@@ -1,0 +1,90 @@
+- 주관식의 경우 mongosh 명령어 기준으로 작성
+(mongodb Node.js 코드로 작성시에도 정답 처리함)
+- mongoose 라이브러리 아님
+
+1.
+다음 중 MongoDB에 대한 틀린 설명은 무엇입니까?
+1) MongoDB는 고정된 스키마가 없어 자유로운 데이터 입력이 가능합니다.
+2) MongoDB는 컬렉션 간 JOIN 기능을 지원하지 않습니다.
+3) MongoDB는 SQL을 사용하는 대표적인 데이터베이스입니다.
+4) MongoDB는 RDBMS가 아니라 NoSQL이라고 부르는 데이터베이스입니다.
+
+답: 3)
+
+2.
+사용 가능한 모든 데이터베이스 목록을 표시하는 명령어를 작성해 보세요.
+
+답: show dbs 또는 show databases
+
+3.
+'posts'라는 새로운 컬렉션을 만드는 명령어를 작성해 보세요.
+
+답: db.createCollection('posts')
+
+4.
+아래 여러 문서를 담고 있는 object 배열이 있다고 할 때,
+모든 문서를 한 번에 삽입하는 명령어를 작성해 보세요. (posts 컬렉션에 넣기)
+const object = [
+  {
+    title: 'Post1',
+    content: 'content1',
+    category: 'Notice',
+    views: 10,
+    likes: 5,
+    tags: ['notice', 'important'],
+    date: Date()
+  },
+  {
+    title: 'Post2',
+    content: 'content2',
+    category: 'Technology',
+    views: 12,
+    likes: 10,
+    tags: ['news', 'tech'],
+    date: Date()
+  },
+  {
+    title: 'Post3',
+    content: 'content3',
+    category: 'Event',
+    views: 15,
+    likes: 15,
+    tags: ['news', 'events'],
+    date: Date()
+  }
+];
+
+답: db.posts.insertMany(object)
+
+5.
+카테고리가 'Technology'인 모든 문서를 찾는 명령어를 작성해 보세요.
+
+답: db.posts.find({ category: 'Technology' })
+
+6.
+모든 문서를 찾아서 title, date 필드만 조회하도록 선택하여 결과에 포함하는 명령어를 작성해 보세요.
+
+답: db.posts.find({}, { _id: 0, title: 1, date: 1 })
+
+7.
+글의 내용(content)을 수정하는 업데이트 명령어를 작성해 보세요.
+이때 글의 id값은 URL 파라미터(변수명: id)로, 글의 내용은 POST 요청의 본문(name: content)으로 전달받는다고 가정
+
+답: db.posts.updateOne({ _id: new ObjectId(req.params.id) }, { $set: { content: req.body.content } })
+
+8.
+클릭한 글의 조회수(views)를 1씩 업데이트하는 명령어를 작성해 보세요.
+이때 글의 id값은 URL 파라미터(변수명: id)로 받는다고 가정
+
+답: db.posts.updateOne({ _id: new ObjectId(req.params.id) }, { $inc: { views: 1 } })
+
+9.
+좋아요(likes)가 10 이상인 모든 문서의 해시태그(tags) 필드에 'popular'를 추가하는 업데이트 명령어를 작성해 보세요.
+힌트: $addToSet 연산자
+
+답: db.posts.updateMany({ likes: { $gte: 10 } }, { $addToSet: { tags: 'popular' } })
+
+10.
+카테고리가 'Event'인 모든 문서를 삭제하는 명령어를 작성해 보세요.
+
+답: db.posts.deleteMany({ category: 'Event' })
