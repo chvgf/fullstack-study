@@ -6,7 +6,16 @@ export default async function List() {
   const client = await connect;
   const db = await client.db('board');
   const posts = await db.collection('post').find().toArray();
-  console.log(posts);
+  console.log(posts); // 수정전
+
+  // 워닝 해결하기: Warning: Only plain objects can be passed to Client Components from Server Components.
+  posts.map((post) => {
+    post._id = post._id.toString();
+    post.user = post.user?.toString();
+    return post;
+  });
+  console.log(posts); // 수정 후
+
 
   return (
 
@@ -17,7 +26,7 @@ export default async function List() {
             key={postMap._id.toString()}
             title={postMap.title}
             content={postMap.content}
-            _id={postMap._id}
+            _id={postMap._id.toString()}
           />
         )
       })}

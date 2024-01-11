@@ -2,8 +2,22 @@
 
 import Link from "next/link";
 import DetailButton from "./DetailButton";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 export default function ListItem(props) {
+  const { _id } = props;  // 포스트 2번째 인자에 props.ㅇㅇㅇ 안되네
+
+  const router = useRouter();
+
+  const delFun2 = async () => {
+    await axios.post(`/api/post/${props._id}`, { _id });
+  };
+  const delFun1 = async () => {
+    await axios.delete(`/api/post?postId=${_id}`);
+  }
+
+
   return (
     <div className="list-item">
       {/* 페이지를 이동하는 방법(1) - Link 컴포넌트 */}
@@ -18,10 +32,15 @@ export default function ListItem(props) {
       <DetailButton postId={props._id.toString()} />
 
       {/* 수정버튼 */}
-      <Link href={`/edit/${props._id}`}>수정</Link>
+      <Link href={`/edit/${props._id}`}> 수정 |</Link>
 
       {/* 삭제버튼 */}
-      <span className="cursor-pointer" onClick={() => { }}>삭제</span>
+      <span className="cursor-pointer" onClick={(e) => {
+        delFun1();
+        // e.target.parentElement.remove(); // 요소 제거(새로고침 발생안함)
+        // location.href = '/list' // 다시 list 로 이동(새로고침 발생)
+        router.refresh(); // soft refresh, 변동이 있는 일부분만 바꿔줌
+      }}> 삭제</span>
 
       <p>{props.content}</p>
     </div>
@@ -58,3 +77,8 @@ export default function ListItem(props) {
 //  - 단점: 검색 노출이 잘 안될 수 있음
 //  - useEffect를 쓰게 되면 HTML 렌더링 이후에 실행되기 때문에 페이지 방문 시 텅 빈 HTML이 먼저 보임
 //  - 검색엔진 봇이 방문 시 수집할 데이터가 없어 수집이 느림
+
+// quiz
+// 글 삭제 기능 완성(2가지 방법)
+// /api/post?postId=글id로 딜리트요청
+// api/post/글id로 딜리트 요청
