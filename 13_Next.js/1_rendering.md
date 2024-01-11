@@ -14,3 +14,12 @@ npm run build
 2) 람다 기호: Dynamic rendering 을 의미
 유저가 페이지에 접속할 때마다 html 페이지를 새로 만들어서 보내줌
 단점으로 서버의 부담이 올라감 -> 캐싱 기능 적절히 사용하면 좋음
+
+## 렌더링 확인 테스트
+/list 페이지는 DB에서 데이터를 꺼내와서 Dynamic 으로 동작해야 할 것 같은데 Static으로 동작함
+
+빌드(npm run build) 후 운영 버전으로 실행(npm start)
+/list 접속 -> 글쓰기 -> 리스트 다시 확인
+작성한 글이 안나옴(새로고침 해도 안나옴)
+왜? Static으로 동작하기 때문에 빌드 시 나온 html 페이지만 계속 보여줌
+/list/page.js로 가서 Dynamic 렌더링으로 동작하도록 수정 필요!

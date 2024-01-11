@@ -1,6 +1,10 @@
 import { connect } from "@/database";
 import ListItem from "./ListItem";
 
+// 특수한 목적의 예약된 변수명
+// dynamic: 렌더링 전략 지정 가능
+export const dynamic = 'force-dynamic'; // Dynamic 렌더링을 해줌
+
 export default async function List() {
   // (참고) DB 입출력 코드는 server 컴포넌트에서만 쓰기
   const client = await connect;
