@@ -23,3 +23,19 @@ npm run build
 작성한 글이 안나옴(새로고침 해도 안나옴)
 왜? Static으로 동작하기 때문에 빌드 시 나온 html 페이지만 계속 보여줌
 /list/page.js로 가서 Dynamic 렌더링으로 동작하도록 수정 필요!
+
+## (참고) 렌더링 방식 구분은 자동으로 해주는데 
+페이지 안에 
+- fetch('/URL', { cache: 'no-store' }) 로 데이터 가져오는 문법 
+- useSearchParams(), cookies(), headers()
+- [Dynamic Routes]
+- 기타 등등
+사용 시 Dynamic 렌더링 방식으로 동작
+
+(참고) 13 이전 버전에서는 4가지 렌더링 방식(다이나믹: SSR,CSR    스태틱: SSG, ISR)
+
+# 캐싱 기능
+결과를 잠깐 저장해두고 재사용
+즉, html 페이지 완성본을 잠깐 저장해두고 재사용
+그 외에도 GET 요청 결과도 캐싱 가능
+캐싱 기능을 적절히 사용하면 서버의 자원 절약

@@ -32,7 +32,7 @@ npx create-next-app@latest --experimental-app => 실험적인 기능 사용 옵�
 - globals.css: 모든 페이지에 다 적용할 글로벌(공통) 스타일 작성
 - page.module.css: 특정 페이지에만 적용 시키고 싶은 스타일 작성(css의 모듈화)
 - api폴더(버전에 따라 없을 수도 있음): 서버 기능을 만드는 곳(예: 서버 API)
-- app폴더(Next 13부터 생김): App Router 방식
+- app폴더(Next 13부터 생김): App Router 방식(폴더 기반 경로), 이전에는 pages 폴더: Page Router 방식(파일 경로 기반)
 - public: 이미지, 폰트 파일 등 정적 리소스 보관
 - next.config.js : Next.js 설정 파일
 - node_modules: 앱 구동에 필요한 모든 라이브러리 파일들
